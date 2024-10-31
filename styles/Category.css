@@ -1,0 +1,17 @@
+.category-item {
+    display: flex;
+    flex-direction: column;
+}
+  
+.category-img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: contain;
+}
+  
+.category-text {
+    font-size: 0.875rem; 
+    text-align: center;
+    font-family: 'Arial';
+}
+  

@@ -1,0 +1,67 @@
+.filter-wrapper {
+    border-bottom: 1px solid lightgray;
+    padding: 1rem 0.5rem;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-tag {
+    display: block;
+    font-size: 1rem;
+}
+
+.seeMore {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.List {
+    display: flex;
+    flex-wrap: wrap;
+    color: black;
+}
+
+.hide.hidden {
+    display: none;
+}
+
+
+.checkBox {
+    margin: 0.313rem;
+    border: 1px solid #d3d3d3;
+    border-radius: 0.625rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    display: block;
+    height: 1.563rem;
+}
+
+/* Specific styles for shoes filter */
+.shoes {
+    width: 3.75rem;
+}
+
+/* Specific styles for clothes filter */
+.clothes {
+    width: 6rem;
+    font-size: 0.875rem; /* Smaller font size for clothes */
+}
+
+
+.hidden {
+    display: none;
+}
+  
+.selected {
+    background-color: black;
+    color: white;
+}

@@ -1,0 +1,18 @@
+/* Search Wrapper */
+.search-bar {
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0 2rem;
+  }
+  
+.search-bar input {
+    width: 25rem;
+    outline: none;
+    border: none;
+    border-bottom: 5px solid black;
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 2rem;
+}

@@ -1,0 +1,46 @@
+.filter-wrapper {
+    border-bottom: 1px solid lightgray;
+    padding: 1rem 0.5rem;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-tag {
+    display: block;
+    font-size: 1rem;
+}
+
+.seeMore {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+
+.hide.hidden {
+    display: none;
+}
+
+.select-filter {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    transform: scale(2);
+    width: 0.625rem;
+    height: 0.625rem;
+    margin-right: 1rem; /* Replace with your desired margin */
+    margin-bottom: 0.5rem;
+}

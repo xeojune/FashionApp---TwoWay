@@ -1,0 +1,10 @@
+* {
+    box-sizing: border-box;
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'Arial';
+}
+
+.header-wrapper, content{
+    width: 100%;
+}

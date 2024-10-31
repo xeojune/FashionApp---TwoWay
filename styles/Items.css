@@ -1,0 +1,91 @@
+/* Random background colors for items */
+.item-component{
+    margin-bottom: 3rem;
+}
+
+.item-img {
+    width: 14rem;
+    height: 14rem;
+    object-position: center;
+    object-fit: fill;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  /* Title Section */
+  .item-title {
+    margin-top: 1.5rem; /* Adjust as per your design */
+    overflow: auto;
+    cursor: pointer;
+  }
+  
+  .description {
+    margin-bottom: 0.5rem; /* Adjust as per your design */
+    font-size: 0.875rem; /* Small size for description */
+  }
+  
+  .item-name-en {
+    /* Add specific styles if needed */
+  }
+  
+  .item-name-kr {
+    color: gray;
+  }
+  
+  /* Amount Section */
+  .amount {
+    margin-bottom: 1rem; /* Adjust as per your design */
+  }
+  
+  .price {
+    font-size: 0.875rem; /* Adjust font size */
+    font-weight: 600; /* Semi-bold */
+  }
+  
+  .price-description {
+    font-size: 0.75rem; /* Adjust font size */
+    color: gray;
+  }
+  
+  /* Interests Section (Bookmark & Likes) */
+  .interests {
+    display: flex;
+    align-items: left;
+    font-size: 0.75rem;
+  }
+  
+  .bookmark {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  
+  .bookmark-icon {
+    width: 1rem;
+    cursor: pointer;
+  }
+  
+  .bookmark-num {
+    margin-left: 0.5rem;
+  }
+  
+  .likes {
+    display: flex;
+    align-items: baseline;
+    margin-left: 0.5rem;
+  }
+  
+  .likes-icon {
+    width: 1rem;
+    cursor: pointer;
+  }
+  
+  .likes-num {
+    margin-left: 0.5rem;
+  }
+  
+  /* Item Component Wrapper */
+  .item-component {
+    margin-bottom: 3rem; /* Adjust this value as per your design */
+  }
+  

@@ -1,0 +1,29 @@
+.item-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-list {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 1rem;
+    padding: 1rem; /* Replace with your desired value */
+}
+
+.load-more {
+    width: 8rem;
+    background: none;
+    border: 1px solid lightgray;
+    border-radius: 1.25rem;
+    font-weight: 300;
+    font-size: 0.875rem; /* Replace with your desired value */
+    padding: 0.9rem 1.5rem;
+    cursor: pointer;
+}
+
+.load-more:hover {
+    background: lightgray;
+}

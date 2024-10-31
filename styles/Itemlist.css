@@ -1,0 +1,96 @@
+
+
+/* General Wrapper */
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* Centers content vertically */
+  width: 100%;   
+}
+
+/* Category List */
+.category-wrapper {
+  width: 100%;
+  max-width: 56rem;
+  margin-top: 4rem;
+}
+
+.category-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+
+/* Filter Block*/
+.content {
+    display: flex;
+    box-sizing: border-box;
+    padding: 3rem 2.5rem;
+    align-items: flex-start;   /* Align content and filter to flex-start */
+    justify-content: flex-start; /* Ensure the content starts from the left */
+    width: 100%;
+    min-width: 45rem;      /* Ensure minimum width to prevent content collapse */
+}
+
+.search-filter {
+    flex: 0 0 15rem;
+    margin-top: 1rem;
+}
+
+.filter {
+    display: block;
+    display: flex;
+    width: 100%;   
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    padding-left: 1rem;
+}
+
+.filter-status {
+    width: 1.25rem;
+    border: 1px solid black;
+    border-radius: 0.625rem;
+    margin-left: 0.625rem;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+.filter-delete {
+    color: gray;
+    border-bottom: 1px solid gray;
+    padding-bottom: 0;
+    margin-left: 4.375rem;
+}
+
+/*Item Block*/
+.item-container {
+    flex-grow: 1;
+    width: 60rem;
+    margin-left: 3rem;
+}
+
+.search-options {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.filter-categories {
+    display: flex;
+    align-items: center;
+}
+
+.filter-category {
+    background-color: #f4f4f4;
+    border: 1px solid #f4f4f4;
+    border-radius: 0.625rem;
+    margin-left: 1rem;
+    padding: 0.313rem;
+}
+
+.delete-button {
+    border-style: none;
+    background: #f4f4f4;
+}

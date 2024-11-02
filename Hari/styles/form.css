@@ -1,0 +1,60 @@
+/* Center the form */
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 100px auto;
+    width: 350px;
+}
+
+/* Style for labels */
+form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+/* Style for input fields */
+form input[type="text"], form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px; 
+    border: none;
+    border-bottom: 2px solid #000000;
+    font-size: 16px;
+    outline: none;
+}
+
+/*style for the logo*/
+.subtitle {
+    display: block;
+    font-weight: bold;
+    margin-left: 120px;
+    margin-bottom: 20px;
+    font-family: 'Anton', sans-serif;
+}
+
+/* Style for input fields focus */
+form input[type="text"]:focus, form input[type="password"]:focus {
+    border-bottom: 2px solid #a0a0a0;
+}
+
+.logo{
+    padding-bottom: 50px;
+}
+
+.custom-button {
+    display: block;
+    padding: 10px;
+    background-color: #e8e8e8;
+    border: none;
+    border-radius: 15px; /* Rounded corners */
+    text-align: center;
+    font-size: 16px; 
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.custom-button:hover {
+    background-color: #d6d6d6; /* Slightly darker gray for hover */
+}

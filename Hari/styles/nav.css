@@ -1,0 +1,23 @@
+/* Style the overall nav bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Style the Logo */
+.nav-logo {
+    flex: 1;
+}
+
+/* Style the right links */
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none; /* Removes the underline */
+    color: black;
+}

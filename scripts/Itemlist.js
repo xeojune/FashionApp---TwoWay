@@ -21,8 +21,7 @@ function toggleFilterVisibility(button) {
 }
 
 function selectFilter(button, filterId, filterType, filterName) {
-    button.classList.toggle('selected');
-
+    const isSelected = button.classList.toggle('selected');
     const inputName = {
         selectFilter: 'selectFilter[]',
         selectPrice: 'selectPrice[]',
@@ -30,45 +29,37 @@ function selectFilter(button, filterId, filterType, filterName) {
         selectClothSize: 'selectClothSize[]',
     }[filterType];
 
-    // Check if the filter tag already exists
-    let existingTag = document.querySelector(`.filter-category[data-filter-id="${filterId}"][data-filter-type="${filterType}"]`);
-    
-    if (!existingTag) {
-        // Create and display a new tag if one doesn't already exist
+    const form = document.getElementById('filter-form');
+    const existingInput = document.querySelector(`input[name="${inputName}"][value="${filterId}"]`);
+    const existingTag = document.querySelector(`.filter-category[data-filter-id="${filterId}"][data-filter-type="${filterType}"]`);
+
+    if (isSelected && !existingInput) {
+        // If selected and not already present, create hidden input and filter tag
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = inputName;
+        hiddenInput.value = filterId;
+        form.appendChild(hiddenInput);
+
         const filterTag = document.createElement('div');
         filterTag.classList.add('filter-category');
         filterTag.dataset.filterId = filterId;
         filterTag.dataset.filterType = filterType;
         filterTag.innerHTML = `
-            ${filterName}
-            <button class="delete-button" onclick="removeFilter(${filterId}, '${filterType}')">X</button>
+            ${filterName} <button class="delete-button" onclick="removeFilter(${filterId}, '${filterType}')">X</button>
         `;
         document.querySelector('.filter-categories').appendChild(filterTag);
-
-        // Add a hidden input to the form to track this filter in $_POST
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = inputName;
-        hiddenInput.value = filterId;
-        document.getElementById('filter-form').appendChild(hiddenInput);
-    } else {
-        // If tag already exists, remove it along with the hidden input
-        existingTag.remove();
-        const hiddenInput = document.querySelector(`input[name="${inputName}"][value="${filterId}"]`);
-        if (hiddenInput) hiddenInput.remove();
+    } else if (!isSelected && existingInput) {
+        // If deselected, remove both hidden input and filter tag
+        existingInput.remove();
+        if (existingTag) existingTag.remove();
     }
 
     updateTotalFilter();
-
-    // Submit the form to update the selection
-    document.getElementById('filter-form').submit();
+    form.submit(); // Submit the form automatically whenever a filter is added or removed
 }
 
 
-
-
-
-// Clear all selected filters
 function deleteAllFilters() {
     // Uncheck all checkboxes in Filter.php
     document.querySelectorAll('.checkbox').forEach(checkbox => {
@@ -80,11 +71,16 @@ function deleteAllFilters() {
         button.classList.remove('selected');
     });
 
+    // Remove all hidden input fields that hold filter data in the form
+    document.querySelectorAll('#filter-form input[type="hidden"]').forEach(input => {
+        input.remove();
+    });
+
     // Reset the displayed filter count
     updateTotalFilter();
 
-    // Optionally, submit the form to reset the server-side filters
-    // document.getElementById('filter-form').submit();
+    // Submit the form to apply the cleared filters on the server side
+    document.getElementById('filter-form').submit();
 }
 
 function updateTotalFilter() {
@@ -139,23 +135,16 @@ function removeFilter(filterId, filterType) {
         selectClothSize: 'selectClothSize[]',
     }[filterType];
 
-    // Uncheck the checkbox or button selection in the form
-    const checkbox = document.querySelector(`input[name="${inputName}"][value="${filterId}"]`);
-    if (checkbox) checkbox.checked = false;
+    const existingInput = document.querySelector(`input[name="${inputName}"][value="${filterId}"]`);
+    const existingTag = document.querySelector(`.filter-category[data-filter-id="${filterId}"][data-filter-type="${filterType}"]`);
+    const button = document.querySelector(`.checkBox[data-filter-id="${filterId}"]`);
 
-    // For button-style selections (like shoes and clothes), remove the selected class
-    const button = document.querySelector(`.checkBox.${filterType}[value="${filterId}"]`);
-    if (button) button.classList.remove('selected');
+    if (existingInput) existingInput.remove();
+    if (existingTag) existingTag.remove();
+    if (button) button.classList.remove('selected'); // Deselect the button
 
-    // Remove the filter tag visually
-    const tag = document.querySelector(`.filter-category[data-filter-id="${filterId}"][data-filter-type="${filterType}"]`);
-    if (tag) tag.remove();
-
-    // Update the total filter count
     updateTotalFilter();
-
-    // Submit the form to reflect the updated state
-    document.getElementById('filter-form').submit();
+    document.getElementById('filter-form').submit(); // Submit form automatically on removal
 }
 
 

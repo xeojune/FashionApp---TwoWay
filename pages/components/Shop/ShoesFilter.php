@@ -10,7 +10,7 @@
             <button 
                 type="button" 
                 class="checkBox <?php echo $filterType; ?> <?php echo in_array($filter['id'], $_POST['selectShoeSize'] ?? []) ? 'selected' : ''; ?>"
-                onclick="selectFilter(this, <?php echo $filter['id']; ?>, 'selectShoeSize', '<?php echo htmlspecialchars($filter['name']); ?>')"
+                onclick="selectFilter(this, <?php echo $filter['id']; ?>, 'selectShoeSize', '<?php echo htmlspecialchars($filter['name']); ?>', this.form)"
             >
                 <?php echo htmlspecialchars($filter['name']); ?>
             </button>

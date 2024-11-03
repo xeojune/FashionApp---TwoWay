@@ -1,0 +1,9 @@
+.right-contents-wrapper {
+    width: 50%;
+    float: right;
+    border-left: 1px solid #e0e0e0; /* Substitute with theme border if available */
+    padding-left: 3rem; /* Substitute with theme padding if available */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

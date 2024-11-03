@@ -1,0 +1,17 @@
+.contents-wrapper {
+    /* Flex settings */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Position and dimensions */
+    /* position: relative;
+    max-width: 80rem;
+    height: 122.6rem;
+    margin: auto;
+    margin-bottom: 148px;
+    padding: 7rem 2rem 0;  */
+
+    /* Additional styling based on theme or custom values */
+    /* box-sizing: border-box; */
+} 

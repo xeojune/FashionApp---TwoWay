@@ -1,0 +1,65 @@
+.left-contents-wrapper {
+    width: 37.5rem;
+    padding-right: 3rem; /* Substitute with theme equivalent if available */
+}
+
+.goods-image-wrapper {
+    width: 35rem;
+    height: 35rem;
+    background-color: #f0f0f0; /* Substitute with theme color if available */
+    text-align: center;
+    overflow: hidden;
+}
+
+.goods-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.deal-notice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.875rem; /* Substitute with theme font size if available */
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0; /* Substitute with theme border color if available */
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    padding: 1rem; /* Substitute with theme padding if available */
+    margin-top: 1.5rem; /* Substitute with theme margin if available */
+}
+
+.notice-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.notice-header {
+    display: flex;
+    align-items: flex-start;
+}
+
+.notice-badge {
+    color: #fff;
+    background-color: #ff8824;
+    padding: 1px 0.5rem; /* Substitute with theme padding if available */
+    margin-right: 0.5rem;
+    border-radius: 2px;
+}
+
+.notice-title {
+    font-weight: 600; /* Substitute with theme font weight if available */
+    padding-top: 0.063rem;
+}
+
+.notice-desc {
+    color: #555; /* Substitute with theme dark gray color if available */
+    font-weight: 300; /* Substitute with theme light font weight if available */
+    margin-top: 0.5rem; /* Substitute with theme margin if available */
+}
+
+.notice-arrow {
+    font-size: 1.5rem; /* Substitute with theme font size if available */
+    margin-left: 0.5rem;
+}

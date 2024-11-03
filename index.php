@@ -23,6 +23,8 @@
             include('./pages/Shop.php'); // Load Shop.php
         } elseif ($page === 'detail' && $productId) {
             include('./pages/ItemDetail.php'); // Load ItemDetail.php if productId is set
+        } elseif ($page === 'profile'){
+            include('./pages/Profile.php'); // Load Profile.php
         } else {
             include('./pages/Home.php'); // Load Home.php as default
         }

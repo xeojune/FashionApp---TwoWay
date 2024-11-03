@@ -1,0 +1,199 @@
+.summary-wrapper {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.goods-name-eng {
+    width: 100%;
+    font-size: 1.25rem; /* Substitute with theme size */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.goods-size {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem; /* Replace 2rem with the value for theme's xl padding */
+    padding-bottom: 1rem; /* Replace 1rem with the value for theme's base padding */
+    border-bottom: 1px solid #e0e0e0; /* Replace #e0e0e0 with theme's lightGray border color */
+}
+
+.goods-size-label {
+    color: #888888; /* Replace #888888 with the actual color value for theme's gray */
+    font-size: 0.75rem; /* Replace 0.75rem with the actual value for theme's xs font size */
+    font-weight: 400; /* Replace 400 with the actual value for theme's regular font weight */
+}
+
+.goods-size-select {
+    display: flex;
+    align-items: center; /* Center items vertically (optional, adjust as needed) */
+    justify-content: space-between; /* Spread items apart horizontally (optional, adjust as needed) */
+}
+
+.size-select-text {
+    color: #000000; /* Replace #000000 with the actual color value for theme's black */
+    font-size: 1rem; /* Replace 1rem with the actual value for theme's base font size */
+    font-weight: 600; /* Replace 600 with the actual value for theme's semiBold font weight */
+    margin-right: 0.5rem; /* Replace 0.5rem with the actual value for theme's small margin */
+    padding-top: 0.125rem;
+}
+
+.size-select-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #ffffff; /* Replace #ffffff with the actual color value for theme's white */
+    border: 1px solid #cccccc; /* Replace #cccccc with the actual value for theme's gray border */
+    border-radius: 50%; /* 100% to create a fully rounded button */
+    cursor: pointer;
+}
+
+.goods-price-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center; /* Aligns items vertically centered; adjust as needed */
+    padding-top: 1rem; /* Replace 1rem with the actual value for theme's base padding */
+    margin-bottom: 2rem; /* Replace 2rem with the actual value for theme's xl margin */
+}
+
+.recent-price-label {
+    color: #888888; /* Replace #888888 with the actual color value for theme's gray */
+    font-size: 0.75rem; /* Replace 0.75rem with the actual value for theme's xs font size */
+    font-weight: 400; /* Replace 400 with the actual value for theme's regular font weight */
+}
+
+.recent-price-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.recent-price {
+    font-size: 1.5rem; /* Replace 1.5rem with the actual value for theme's xl font size */
+    font-weight: 700; /* Replace 700 with the actual value for theme's extraBold font weight */
+}
+
+.price-amount-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #ff0000; /* Replace #ff0000 with the actual color value for theme's red */
+    margin-top: -0.125rem;
+}
+
+.price-amount-icon {
+    font-size: 0.875rem; /* Replace 0.875rem with the actual value for theme's small font size */
+}
+
+.price-amount {
+    padding-left: 0.5rem; /* Replace 0.5rem with the actual value for theme's xs margin */
+    font-size: 0.75rem; /* Replace 0.75rem with the actual value for theme's xs font size */
+    font-weight: 400; /* Replace 400 with the actual value for theme's regular font weight */
+}
+
+.deal-btns-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.sales-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 49%;
+    height: 3.75rem;
+    padding: 0;
+    color: #ffffff; /* Replace with your theme's white color */
+    border: none;
+    border-radius: 0.625rem;
+    cursor: pointer;
+}
+
+.sales-button-red {
+    background-color: #ff6253; /* Replace with your theme's red color */
+}
+
+.sales-button-green {
+    background-color: #41b979; /* Replace with your theme's green color */
+}
+
+.sales-button:nth-child(2) {
+    margin-left: 0.625rem;
+}
+
+
+.sales-button:nth-child(2) {
+    margin-left: 0.625rem;
+}
+
+.btns-name {
+    width: 3.438rem;
+    padding: 1.188rem 0;
+    margin-right: 1rem; /* Replace 1rem with theme's base margin */
+    font-size: 1.125rem; /* Replace 1.125rem with theme’s lg font size */
+    font-weight: 800; /* Replace 800 with theme’s extraBold weight */
+    text-align: center;
+    border-right: 1px solid rgba(34, 34, 34, 0.1);
+}
+
+.btns-price-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.btns-price-text {
+    font-size: 1rem; /* Replace 1rem with the theme's base font size */
+    font-weight: 600; /* Replace 600 with the theme's semiBold font weight */
+}
+
+.btns-price-state {
+    font-size: 0.875rem; /* Replace 0.875rem with the theme's xs font size */
+    font-weight: 300; /* Replace 300 with the theme's light font weight */
+}
+
+.bookmark-btns-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3.75rem;
+    color: #000000; /* Replace #000000 with the theme's black color */
+    margin-top: 1rem; /* Replace 1rem with the theme's base margin */
+    background-color: #ffffff; /* Replace #ffffff with the theme's white color */
+    border: 1px solid #e0e0e0; /* Replace #e0e0e0 with the theme's lightGray border */
+    border-radius: 0.625rem;
+    cursor: pointer;
+}
+
+.bookmark-icon {
+    font-size: 1rem; /* Replace 1rem with the theme's base font size */
+}
+
+.bookmark-btns-label {
+    font-size: 1rem; /* Replace 1rem with the theme's base font size */
+    margin-left: 0.5rem; /* Replace 0.5rem with the theme's xs margin */
+}
+
+.bookmark-btns-nums {
+    font-size: 1rem; /* Replace 1rem with the theme's base font size */
+    font-weight: 600; /* Replace 600 with the theme's semiBold font weight */
+    margin-left: 0.5rem; /* Replace 0.5rem with the theme's xs margin */
+}
+
+
+
+
+

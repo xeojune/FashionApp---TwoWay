@@ -1,0 +1,111 @@
+.info-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 3rem; /* Replace 3rem with the theme's xxxl margin */
+}
+
+.info-title {
+    font-size: 1.25rem; /* Replace 1.25rem with the theme's lg font size */
+    font-weight: 800; /* Replace 800 with the theme's extraBold font weight */
+    margin-bottom: 1rem; /* Replace 1rem with the theme's base margin */
+}
+
+.info-list-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 2rem 0; /* Replace 2rem with theme's xl margin */
+    border-top: 1px solid #e0e0e0; /* Replace #e0e0e0 with theme's lightGray border color */
+    border-bottom: 1px solid #e0e0e0; /* Replace #e0e0e0 with theme's lightGray border color */
+}
+
+.info-list {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.info-item-wrapper {
+    width: 33.3%;
+    word-break: break-word;
+    padding: 0 1rem; /* Replace 1rem with the theme's base margin */
+    border-left: 1px solid #e0e0e0; /* Replace #e0e0e0 with theme's lightGray border color */
+}
+
+.info-item-wrapper:first-child {
+    border-left: none;
+    padding-left: 0;
+    font-weight: 600; /* Replace 600 with the theme's semiBold font weight */
+}
+
+.info-list-title {
+    color: #808080; /* Replace #808080 with the theme's gray color */
+    font-size: 0.875rem; /* Replace 0.875rem with the theme's xs font size */
+    font-weight: 300; /* Replace 300 with the theme's light font weight */
+}
+
+.info-list-desc {
+    font-size: 1rem; /* Replace 1rem with the theme's small font size */
+    margin-top: 0.5rem; /* Replace 0.5rem with the theme's xs margin */
+    line-height: 1.063rem;
+    font-weight: bold; /* Replace 400 with the theme's regular font weight */
+}
+
+.delivery-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.delivery-info {
+    color: #505050; /* Replace #505050 with the theme's darkGray color */
+    font-size: 1rem; /* Replace 1rem with the theme's small font size */
+    font-weight: 400; /* Replace 400 with the theme's regular font weight */
+    margin-top: 3rem; /* Replace 3rem with the theme's xxxl margin */
+    margin-bottom: 2rem; /* Replace 2rem with the theme's xl margin */
+}
+
+.delivery-way {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem; /* Replace 1rem with the theme's small font size */
+    padding-bottom: 1rem; /* Replace 1rem with the theme's small padding */
+}
+
+
+.delivery-image {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 1rem; /* Replace 1rem with the theme's base margin */
+    border-radius: 50%; /* 100% for a circular shape */
+}
+
+.delivery-contents {
+    /* Add styles here if needed */
+}
+
+.delivery-title-wrapper {
+    /* Add styles here if needed */
+}
+
+.delivery-type {
+    font-weight: 600; /* Replace 600 with the theme's semiBold font weight */
+    margin-right: 0.5rem; /* Replace 0.5rem with the theme's xs margin */
+}
+
+.delivery-price {
+    font-weight: 400; /* Replace 400 with the theme's regular font weight */
+}
+
+.delivery-desc {
+    color: #808080; /* Replace #808080 with the theme's gray color */
+    font-weight: 400; /* Replace 400 with the theme's regular font weight */
+}
+

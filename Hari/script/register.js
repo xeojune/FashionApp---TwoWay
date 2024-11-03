@@ -5,12 +5,12 @@ var emailNode = document.getElementById("email");
 nameNode.addEventListener("change", chkName, false);
 emailNode.addEventListener("change", chkEmail, false);
 
-document.getElementById("myForm").onsubmit = chkForm;
+document.getElementById("regForm").onsubmit = chkForm;
 
 // Function to check form
 function chkForm(){
-    var pass = document.getElementById("pass")
-    var verifypass = document.getElementById("verifypass")
+    var pass = document.getElementById("pass");
+    var verifypass = document.getElementById("verifypass");
     var nameNode = document.getElementById("name");
     var emailNode = document.getElementById("email");
 

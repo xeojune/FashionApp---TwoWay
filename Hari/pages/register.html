@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../styles/form.css"/>
     <link rel="stylesheet" href="../styles/footer.css"/>
   </head>
-  <body>
+  <body style = "background-color: #f9f9f9;">
     <nav>
       <div class="nav-logo">
         <a href="#home"><img src="../assets/mainlogo.png" alt="Logo" /></a>
@@ -18,14 +18,15 @@
         <a href="test.html">ABOUT</a>
       </div>
     </nav>
-    <form method="POST" action="register.html" id="myForm">
+    <form method="POST" action="register.php" id="regForm">
       <img src="../assets/mainlogo.png" alt="Logo" class="logo"/>
       <label class="subtitle">Resell and Earn </label>
-      <label>Username <input type="text" placeholder="Enter your Username" id="name"></label>
-      <label>Email <input type="text" placeholder="Enter your Email" id="email"> </label> 
-      <label>Password <input type="password" placeholder="Enter your Password" id="pass"> </label> 
-      <label> Verify Password <input type="password" placeholder="Enter your Password" id="verifypass"> </label> 
-      <input type="submit" value="Register" class="custom-button">
+      <label>Username <input type="text" placeholder="Enter your Username" id="name"  name="name"></label>
+      <label>Email <input type="text" placeholder="Enter your Email" id="email" name="email"> </label> 
+      <label>Password <input type="password" placeholder="Enter your Password" id="pass" name="password"> </label> 
+      <label> Verify Password <input type="password" placeholder="Enter your Password" id="verifypass" name="password2"> </label> 
+      <input type="submit" value="Register" class="custom-button" name="submit">
+      <input type="button" value="Login" class="custom-button" onclick="window.location.href='login.html';">
       <script type="text/javascript" src="../script/register.js"></script>
     </form>
   </body>

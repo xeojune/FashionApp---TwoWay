@@ -1,4 +1,4 @@
 <?php
-    header("Location: shoppingcart.php");
+    header("Location: removefromcart.php");
     exit();
 ?>

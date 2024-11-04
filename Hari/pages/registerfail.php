@@ -21,6 +21,18 @@
     <form method="POST" action="register.php" id="regForm">
       <img src="../assets/mainlogo.png" alt="Logo" class="logo"/>
       <label class="subtitle">Resell and Earn </label>
+      <?php
+            session_start(); // Start the session
+
+            // Check if there are error messages and display them
+            if (isset($_SESSION['register_error']) && !empty($_SESSION['register_error'])) {
+                foreach ($_SESSION['register_error'] as $error) {
+                    echo "<label class='register-failed'>$error</label><br>";
+                }
+                // Clear session errors after displaying them
+                unset($_SESSION['register_error']);
+            }
+        ?>
       <label>Username <input type="text" placeholder="Enter your Username" id="name"  name="name"></label>
       <label>Email <input type="text" placeholder="Enter your Email" id="email" name="email"> </label> 
       <label>Phone Number: <input type="text" placeholder="Enter your Phone Number" id="number" name="number"> </label> 

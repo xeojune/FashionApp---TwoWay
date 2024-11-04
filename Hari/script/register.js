@@ -1,9 +1,11 @@
 // Get DOM address of the elements and register the event handlers
 var nameNode = document.getElementById("name");
 var emailNode = document.getElementById("email");
+var phoneNode = document.getElementById("number");
 
 nameNode.addEventListener("change", chkName, false);
 emailNode.addEventListener("change", chkEmail, false);
+phoneNode.addEventListener("change", chkPhone, false);
 
 document.getElementById("regForm").onsubmit = chkForm;
 
@@ -53,10 +55,10 @@ function chkName(event){
     var pos = myName.value.search(/^[A-Za-z ]+$/); // Updated regex to match one or more characters
 
     if (pos != 0) {
-    myName.value = "";
     alert("The name you entered (" + myName.value +
         ") is not in the correct form. \n" +
         "It should only contain alphabet characters and character spaces.");
+    myName.value = "";
     myName.focus();  // Set focus back to the name input field
     myName.select(); // Select the text in the input field for easy editing
     return false;
@@ -98,5 +100,24 @@ function chkEmail(event) {
         myEmail.select();
         myEmail.value = "";
         return false;
+    }
+}
+
+// Function to check phone number
+function chkPhone(event){
+
+    // Get the input element that triggered the event
+    var myPhone = event.currentTarget;
+
+    var pos = myPhone.value.search(/^\d{8}$/);
+
+    if (pos != 0) {
+    alert("The number you entered (" + myPhone.value +
+        ") is not in the correct form. \n" +
+        "It should be numerical values only in this format: '12345678'");
+    myPhone.focus();  // Set focus back to the name input field
+    myPhone.select(); // Select the text in the input field for easy editing
+    myPhone.value = "";
+    return false;
     }
 }

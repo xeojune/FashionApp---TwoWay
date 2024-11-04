@@ -4,15 +4,36 @@ insert into user values
     (3, "password1", "password1@email.com", "7c6a180b36896a0a8c02787eeafb0e4c","90919223", "2024-05-10" ),
     (4, "password2", "password2@email.com", "6cb75f652a9b52798eb6cf2201057c73","90919224", "2024-05-10" ),
     (5, "password3", "password3@email.com", "819b0643d6b89dc9b579fdfc9094f28e","90919225", "2024-05-10" ),
-    (6, "password4", "password4@email.com", "34cc93ece0ba9e3f6f235d4af979b16c","90919226", "2024-05-10" );
+    (6, "password4", "password4@email.com", "34cc93ece0ba9e3f6f235d4af979b16c","90919226", "2024-05-10" ),
+    (7, "password5", "password5@email.com", "db0edd04aaac4506f7edab03ac855d56","90919227", "2024-05-10" ),
+    (8, "password6", "password6@email.com", "218dd27aebeccecae69ad8408d9a36bf","90919228", "2024-05-10" ),
+    (9, "password7", "password7@email.com", "00cdb7bb942cf6b290ceb97d6aca64a3","90919229", "2024-05-10" ),
+    (10, "password8", "password8@email.com", "b25ef06be3b6948c0bc431da46c2c738","90919230", "2024-05-10" );
 
 insert into wishlist values
     ("2000", 1, "1000");
 
 insert into cart values
-    (1, "Asics", "Shoe", "1", "XS", 19.00),
-    (2, "Nike", "Shoe", "1", "S", 20.00),
-    (3, "Adidas", "Shoe", "1", "L", 21.00),
-    (4, "New Balance", "Shoe", "1", "M", 22.00),
-    (5, "Onsuka Tiger", "Shoe", "1", "XL", 23.00),
-    (6, "Fila", "Shoe", "1", "XL", 24.00);
+    (1, "adidas", "Shoe", "1", "XS", 19.00),
+    (2, "asics", "Shoe", "1", "S", 20.00),
+    (3, "chromehearts", "Shoe", "1", "L", 21.00),
+    (4, "converse", "Shoe", "1", "M", 22.00),
+    (5, "iab", "Shoe", "1", "XL", 23.00),
+    (6, "newbalance", "Shoe", "1", "XL", 24.00),
+    (7, "Nike", "Shoe", "1", "XL", 24.00),
+    (8, "palace", "Shoe", "1", "XL", 24.00),
+    (9, "stussy", "Shoe", "1", "XL", 24.00),
+    (10, "supreme", "Shoe", "1", "XL", 24.00);
+
+INSERT INTO ProductImages VALUES
+    (1,'3', "../../assets/shortcutImg/adidas.png"),
+    (2,'3', "../../assets/shortcutImg/asics.png"),
+    (3,'3', "../../assets/shortcutImg/chromehearts.jpg"),
+    (4,'3', "../../assets/shortcutImg/converse.png"),
+    (5,'3', "../../assets/shortcutImg/iab.png"),
+    (6,'3', "../../assets/shortcutImg/newbalance.png"),
+    (7,'3', "../../assets/shortcutImg/Nike.png"),
+    (8,'3', "../../assets/shortcutImg/palace.png"),
+    (9,'3', "../../assets/shortcutImg/stussy.png"),
+    (10,'3', "../../assets/shortcutImg/supreme.png");
+    

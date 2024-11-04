@@ -35,3 +35,9 @@ create table cart_history
     datecreated date not null, 
     dateupdated date not null
 );
+
+CREATE TABLE ProductImages (
+    ProductImageCode INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ProductID INT NOT NULL,
+    Image VARCHAR(255) NOT NULL
+);

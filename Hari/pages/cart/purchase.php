@@ -6,6 +6,24 @@
     } else {
         $total = 0;
     }
+
+    @ $db = new mysqli('localhost', 'root','', 'Two-Way');
+
+    if (mysqli_connect_errno()) {
+        echo "Error: Could not connect to database.  Please try again later.";
+        exit;
+    }
+
+    $userquery = "SELECT phonenumber, name FROM user WHERE name = '$user'";
+    $resultuser = $db->query($userquery);
+
+    if ($resultuser && $resultuser->num_rows > 0) {
+        $row = $resultuser->fetch_assoc();
+        $username = $row['name'];
+        $phonenumber = $row['phonenumber'];
+    } 
+    $db->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -42,18 +60,18 @@
 
         <h2>Delivery Information</h2>
         <div class="info-box">
-            <form action="confirmorder.php" method="POST">
+            <form action="completedorder.php" method="POST">
                 <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name"><br><br>
+                <input type="text" id="name" name="name" required><br><br>
                 
                 <label for="address">Address:</label>
-                <textarea id="address" name="address" rows="3"></textarea><br><br>
+                <textarea id="address" name="address" rows="3" required></textarea><br><br>
 
                 <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone"><br><br>
+                <input type="tel" id="phone" name="phone" value=<?php echo $phonenumber; ?> required><br><br>
 
                 <label for="payment-method">Payment Method:</label>
-                <select id="payment-method" name="payment_method" onchange="toggleCardForm()">
+                <select id="payment-method" name="payment_method" onchange="toggleCardForm()" required>
                     <option value="">Select Payment Method</option>
                     <option value="credit-card">Credit Card</option>
                     <option value="bank-transfer">Bank Transfer</option>
@@ -62,17 +80,18 @@
 
                 <div id="credit-card-details" style="display: none;">
                     <label for="card-number">Card Number:</label>
-                    <input type="text" id="card-number" name="card_number" placeholder="1234 5678 9012 3456" ><br><br>
+                    <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" ><br><br>
 
                     <label for="card-name">Name on Card:</label>
-                    <input type="text" id="card-name" name="card_name" placeholder="Full Name"><br><br>
+                    <input type="text" id="card-name" name="card-name" placeholder="Full Name"><br><br>
 
                     <label for="card-ccv">CCV:</label>
-                    <input type="text" id="card-ccv" name="card_ccv" placeholder="123"><br><br>
+                    <input type="text" id="card-ccv" name="card-ccv" placeholder="123"><br><br>
 
                     <label for="expire-date">Expiry Date:</label>
-                    <input type="month" id="expire-date" name="expire_date" ><br><br>
+                    <input type="month" id="expire-date" name="expire-date" placeholder="MM/YY"><br><br>
                 </div>
+
                 <div id="banktransfer" style="display: none;">
                     <label for="bank-number">Bank Number:</label>
                     <input type="text" id="bank-number" name="bank-number" placeholder="1234 5678 9012 3456"><br><br>
@@ -81,7 +100,7 @@
                     <input type="text" id="name" name="name" placeholder="Full Name" ><br><br>
 
                     <label for="bank-name">Bank Name:</label>
-                    <input type="text" id="bank-name" name="bank-name" placeholder="Full Name" ><br><br>
+                    <input type="text" id="bank-name" name="bank-name" placeholder="Bank Name" ><br><br>
                 </div>
                 <button type="submit" class="purchase-btn">Confirm Purchase</button>
             </form>

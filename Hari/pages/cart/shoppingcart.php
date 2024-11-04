@@ -38,7 +38,15 @@
                 // echo "Quantity: " . $cartrow['size'] . "<br><br>";
             }
         }
-    } 
+    }
+    // Create the query to get the image path for the specified brand from ProductImages table
+    $imagesquery = "SELECT * FROM ProductImages WHERE image LIKE '%$brand%'";
+    $resultcart = $db->query($imagesquery);
+    if ($resultcart->num_rows > 0) {
+        while ($row = $resultcart->fetch_assoc()) {
+            $image = $row["Image"];
+        }
+    }
     $db->close();
 
 ?>
@@ -73,8 +81,11 @@
         <h1>Shopping Bag</h1>
         <p> <?php echo $count;?> items</p>
         <hr>
+        <?php 
+        if ($count > 0){
+        ?>        
         <div class="shopping-item">
-            <img src="../../assets/asics.png" alt="Item Image" class="item-image">
+            <img src=<?php echo $image;?> alt="Item Image" class="item-image">
             <div class="item-details">
                 <h2>Brand: <?php echo $brand;?></h2>
                 <p>Item Name: <?php echo $description;?></p>
@@ -93,16 +104,19 @@
                 </div>
             </div>
         </div>
+        <?php }?>
         <div class="order-summary">
             <h3>Order summary</h3>
             <div class="summary-details">
-                <p>Delivery<span id="total"> $2.00</span></p>
-                <strong><p>Total (SGD) <span id="total-price">$<?php echo number_format($quantity*$price+2.00,2);?></span></p></strong>
+                <p>Delivery<span id="total"> <?php if($count == 0) { echo "$0.00" ;} else {echo "$2.00";} ?></span></p>
+                <strong><p>Total (SGD) <span id="total-price">$<?php  if($count == 0) { echo "0.00" ;} else {echo number_format($quantity*$price+2.00,2);}?></span></p></strong>
             </div>
+            <?php if ($count > 0) {?>
             <form action="purchase.php" method="POST">
                 <input type="hidden" name="total" value="<?php echo number_format($quantity*$price+2.00,2); ?>">
                 <button type="submit" class="purchase-btn">Proceed to purchase</button>
             </form>
+            <?php }?>
         </div>
     </div>
 </body>

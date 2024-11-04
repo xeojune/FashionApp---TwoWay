@@ -27,7 +27,7 @@ $userQuery = "SELECT * FROM user WHERE name = '$username'";
 $userResult = $db->query($userQuery);
 
 if ($userResult->num_rows > 0) {
-    $_SESSION['register_error'][] = "Username inuse";
+    $_SESSION['register_error'][] = "Username Used";
 }
 
 // Check if the email already exists
@@ -35,7 +35,7 @@ $emailQuery = "SELECT * FROM user WHERE email = '$email'";
 $emailResult = $db->query($emailQuery);
 
 if ($emailResult->num_rows > 0) {
-    $_SESSION['register_error'][] = "Email inuse";
+    $_SESSION['register_error'][] = "Email Used";
 }
 
 // Check if the phone number already exists
@@ -43,7 +43,7 @@ $phoneQuery = "SELECT * FROM user WHERE phonenumber = '$phonenumber'";
 $phoneResult = $db->query($phoneQuery);
 
 if ($phoneResult->num_rows > 0) {
-    $_SESSION['register_error'][] = "Phone number inuse";
+    $_SESSION['register_error'][] = "Phone number Used";
 }
 
 // Redirect to registerfail.php if there are any errors

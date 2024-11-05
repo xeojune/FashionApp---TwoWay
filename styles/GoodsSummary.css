@@ -193,6 +193,27 @@
     margin-left: 0.5rem; /* Replace 0.5rem with the theme's xs margin */
 }
 
+.size-dropdown {
+    position: absolute;
+    right: 0;
+    top: 30%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+.size-option {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.size-option:hover {
+    background-color: #f0f0f0;
+}
+
 
 
 

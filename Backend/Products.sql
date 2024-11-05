@@ -1,3 +1,29 @@
+-- Create Product Inventory Table
+CREATE TABLE ProductInventory (
+    ProductSizeCode INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ProductID INT NOT NULL,
+    SizeCode INT NOT NULL,
+    Quantity INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE,
+    FOREIGN KEY (SizeCode) REFERENCES Sizes(SizeCode) ON DELETE CASCADE
+);
+
+-- Create Sizes Table
+CREATE TABLE Sizes (
+    SizeCode INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    SizeName VARCHAR(255) NOT NULL,
+    SizeType ENUM('Shoes', 'Clothes') NOT NULL
+);
+
+-- Create ProductSizes Table (after Sizes and Products are created)
+-- CREATE TABLE ProductSizes (
+--     ProductSizeCode INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     ProductID INT NOT NULL,
+--     SizeCode INT NOT NULL,
+--     FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE,
+--     FOREIGN KEY (SizeCode) REFERENCES Sizes(SizeCode) ON DELETE CASCADE
+-- );
+
 -- Create CartHistory Table
 CREATE TABLE CartHistory (
     OrderCode INT, 
@@ -44,11 +70,6 @@ CREATE TABLE Products (
     FOREIGN KEY (BrandCode) REFERENCES Brands(BrandCode)
 );
 
--- Create Sizes Table
-CREATE TABLE Sizes (
-    SizeCode INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SizeName VARCHAR(255) NOT NULL
-);
 
 -- Create ProductSizes Table (after Sizes and Products are created)
 CREATE TABLE ProductSizes (

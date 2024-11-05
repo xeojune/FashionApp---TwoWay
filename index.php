@@ -47,8 +47,11 @@
             include('./pages/subpages/wishlist/wishlist.php'); // Load wishlist.php
         } else if ($page === 'purchase'){
             include('./pages/subpages/cart/purchase.php'); // Load purchase.php            
-        }
-        else {
+        } else if ($page === 'profile'){
+            include('./pages/Profile.php'); // Load Profile.php
+        } else if (strpos($page, 'sell') === 0){
+            include('./pages/Sell.php'); // Load Sell.php (check if the page stats with 'sell')
+        } else {
             include('./pages/Home.php'); // Load Home.php as default
         }
         

@@ -1,3 +1,32 @@
+INSERT INTO ProductInventory (ProductID, SizeCode, Quantity)
+VALUES 
+    (1, 1, 10),  -- Product 1, Size 215 (Shoes), Quantity 10
+    (1, 2, 5),   -- Product 1, Size 220 (Shoes), Quantity 5
+    (6, 66, 20), -- Product 6, Size XS (Clothes), Quantity 20
+    (6, 67, 15); -- Product 6, Size S (Clothes), Quantity 15
+
+
+INSERT INTO Sizes (SizeName, SizeType) VALUES 
+('XXS', 'Clothes'), ('XS', 'Clothes'), ('S', 'Clothes'), ('M', 'Clothes'), 
+('L', 'Clothes'), ('XL', 'Clothes'), ('XXL', 'Clothes'), ('XXXL', 'Clothes');
+
+-- INSERT INTO ProductSizes (ProductID, SizeCode) VALUES 
+-- (1, (SELECT SizeCode FROM Sizes WHERE SizeName = '250' AND SizeType = 'Shoes')),
+-- (1, (SELECT SizeCode FROM Sizes WHERE SizeName = '255' AND SizeType = 'Shoes')),
+-- (1, (SELECT SizeCode FROM Sizes WHERE SizeName = '260' AND SizeType = 'Shoes'));
+
+
+INSERT INTO Sizes (SizeName, SizeType) VALUES 
+('215', 'Shoes'), ('220', 'Shoes'), ('225', 'Shoes'), ('230', 'Shoes'), ('235', 'Shoes'),
+('240', 'Shoes'), ('245', 'Shoes'), ('250', 'Shoes'), ('255', 'Shoes'), ('260', 'Shoes'),
+('265', 'Shoes'), ('270', 'Shoes'), ('275', 'Shoes'), ('280', 'Shoes'), ('285', 'Shoes'),
+('290', 'Shoes'), ('295', 'Shoes'), ('300', 'Shoes'), ('305', 'Shoes'), ('310', 'Shoes'),
+('315', 'Shoes'), ('320', 'Shoes'), ('325', 'Shoes'), ('330', 'Shoes');
+
+
+
+
+
 INSERT INTO Cart VALUES
     ("hari", 1, "1", "L", 19.00),
     ("password", 2, "2", "L", 20.00),

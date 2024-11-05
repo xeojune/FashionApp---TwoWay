@@ -18,6 +18,8 @@ $SALES_BUTTON = [
 $recentPriceChange = number_format($productData['Price'] * 0.1, 2); // 10% increase as example
 $recentPriceChangePercentage = 10.5; // This can be dynamically calculated too
 $bookmarkCount = 5719; // Replace this with dynamic data if available
+
+$serializedData = urlencode(serialize($productData));
 ?>
 
 <link rel="stylesheet" href="../../../styles/GoodsSummary.css">
@@ -28,7 +30,19 @@ $bookmarkCount = 5719; // Replace this with dynamic data if available
         <span class="goods-size-label">Size</span>
         <div class="goods-size-select">
             <span class="size-select-text">All Sizes</span>
-            <button class="size-select-btn">▼</button>
+            <button class="size-select-btn" onclick="toggleSizeDropdown()">▼</button>
+            <!-- Dropdown list for sizes -->
+            <div class="size-dropdown" id="sizeDropdown" style="display: none;">
+                <?php if (!empty($productData['Sizes'])):?>
+                    <?php foreach ($productData['Sizes'] as $size): ?>
+                        <div class="size-option" onclick="selectSize('<?php echo htmlspecialchars($size); ?>')">
+                            <?php echo htmlspecialchars($size); ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="size-option">No sizes available</div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 
@@ -67,11 +81,23 @@ $bookmarkCount = 5719; // Replace this with dynamic data if available
 </div>
 
 <script>
+function toggleSizeDropdown() {
+    var dropdown = document.getElementById("sizeDropdown");
+    dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+}
+
+function selectSize(size) {
+    document.querySelector('.size-select-text').innerText = size;
+    document.getElementById("sizeDropdown").style.display = "none";
+}
+
 function goToDeal(action) {
     if (action === 'Buy') {
-        window.location.href = 'buy.php'; // Update with the actual URL for the "buy" page
+        window.location.href = 'buy.php';
     } else if (action === 'Sell') {
-        window.location.href = 'sell.php'; // Update with the actual URL for the "sell" page
+        // Pass serialized data as a URL parameter
+        window.location.href = `index.php?page=sell&data=<?php echo $serializedData; ?>`;
     }
 }
+
 </script>

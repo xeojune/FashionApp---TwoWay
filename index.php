@@ -29,9 +29,26 @@
             include('./pages/subpages/login/login.php'); // Load Login.php
         } else if ($page === 'register'){
             include('./pages/subpages/register/register.php'); // Load Register.php
-        } else if ($page === 'profile'){
-            include('./pages/Profile.php'); // Load Profile.php
-        } else {
+        } else if ($page === 'loginauth'){
+            include('./pages/subpages/login/authmain.php'); // Load authmain.php
+        } else if ($page === 'faillogin'){
+            include('./pages/subpages/login/loginfail.php'); // Load loginfail.php            
+        } else if ($page === 'registerauth') {
+            include('./pages/subpages/register/registerauth.php'); // Load registerauth.php
+        } else if ($page === 'failregister') {
+            include('./pages/subpages/register/registerfail.php'); // Load Registerfail.php
+        } else if ($page === 'successregister') {
+            include('./pages/subpages/register/registersuccess.php'); // Load RegisterSuccess.php
+        } else if ($page === 'cart') {
+            include('./pages/subpages/cart/shoppingcart.php'); // Load shoppingcart.php
+        } else if ($page === 'removecart') {
+            include('./pages/subpages/cart/removefromcart.php'); // Load removefromcart.php
+        } else if ($page === 'wishlist') {
+            include('./pages/subpages/wishlist/wishlist.php'); // Load wishlist.php
+        } else if ($page === 'purchase'){
+            include('./pages/subpages/cart/purchase.php'); // Load purchase.php            
+        }
+        else {
             include('./pages/Home.php'); // Load Home.php as default
         }
         

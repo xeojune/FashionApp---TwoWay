@@ -12,8 +12,7 @@ CREATE TABLE Cart (
     ProductID INT NOT NULL,
     Quantity VARCHAR(100) NOT NULL,
     Size VARCHAR(100) NOT NULL,
-    Price INT NOT NULL,
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+    Price INT NOT NULL
 );
 
 -- Create User Table

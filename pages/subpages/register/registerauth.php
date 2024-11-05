@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $username = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -11,7 +9,7 @@ $date = date("Y-m-d");
 $password = md5($password);
 
 // Connect to the database
-@ $db = new mysqli('localhost', 'root', '', 'Two-Way');
+$db = new mysqli('127.0.0.1', 'root', '', 'TwoWay');
 
 // Check for connection errors
 if (mysqli_connect_errno()) {
@@ -23,7 +21,7 @@ if (mysqli_connect_errno()) {
 $_SESSION['register_error'] = [];
 
 // Check if the username already exists
-$userQuery = "SELECT * FROM user WHERE name = '$username'";
+$userQuery = "SELECT * FROM User WHERE Name = '$username'";
 $userResult = $db->query($userQuery);
 
 if ($userResult->num_rows > 0) {
@@ -31,7 +29,7 @@ if ($userResult->num_rows > 0) {
 }
 
 // Check if the email already exists
-$emailQuery = "SELECT * FROM user WHERE email = '$email'";
+$emailQuery = "SELECT * FROM User WHERE Email = '$email'";
 $emailResult = $db->query($emailQuery);
 
 if ($emailResult->num_rows > 0) {
@@ -39,7 +37,7 @@ if ($emailResult->num_rows > 0) {
 }
 
 // Check if the phone number already exists
-$phoneQuery = "SELECT * FROM user WHERE phonenumber = '$phonenumber'";
+$phoneQuery = "SELECT * FROM User WHERE PhoneNumber = '$phonenumber'";
 $phoneResult = $db->query($phoneQuery);
 
 if ($phoneResult->num_rows > 0) {
@@ -48,19 +46,19 @@ if ($phoneResult->num_rows > 0) {
 
 // Redirect to registerfail.php if there are any errors
 if (!empty($_SESSION['register_error'])) {
-    header("Location: registerfail.php");
+    header("Location: index.php?page=failregister");
     exit();
 }
 
 // Insert new user into the database if there are no errors
-$query = "INSERT INTO user (name, email, password, phonenumber, datecreated) VALUES ('$username', '$email', '$password', '$phonenumber', '$date')";
+$query = "INSERT INTO User (Name, Email, Password, PhoneNumber, DateCreated) VALUES ('$username', '$email', '$password', '$phonenumber', '$date')";
 $result = $db->query($query);
 
 if (!$result) {
     echo "Your query failed.";
 } else {
     // Redirect to the success page
-    header("Location: registersuccess.html");
+    header("Location: index.php?page=successregister");
     exit();
 }
 

@@ -1,26 +1,19 @@
+<?php
+$pageTitle = "Wishlist"; // Set the page title
+
+// Start output buffering to capture the content
+ob_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Wish List</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../styles/nav.css" />
-    <link rel="stylesheet" href="../../styles/form.css" />
-    <link rel="stylesheet" href="../../styles/footer.css" />
-    <link rel="stylesheet" href="../../styles/wishlist.css" />
-    <script type="text/javascript" src="../../script/wishlist.js"></script>
+    <script type="text/javascript" src="../../../../scripts/wishlist.js"></script>
+    <link rel="stylesheet" href="../../../../styles/wishlist.css" />
 </head>
 <body>
-    <nav>
-        <div class="nav-logo">
-            <a href="#home"><img src="../../assets/mainlogo.png" alt="Logo" /></a>
-        </div>
-        <div class="nav-links">
-            <a href="test.html">STYLE</a>
-            <a href="test.html">SHOP</a>
-            <a href="test.html">ABOUT</a>
-            <a href="test.html">PROFILE</a>
-        </div>
-    </nav>
     <div class="container">
         <h1>Wish List</h1>
         <p>1 item in your wish list</p>
@@ -31,14 +24,14 @@
                 <h2>Brand</h2>
                 <p>Item Name</p>
                 <div class="actions">
-                    <a href="../cart/shoppingcart.php">Move to Shopping Bag</a>
+                    <a href="index.php?page=cart">Move to Shopping Bag</a>
                     <div class="actions">
                         <a href="#" class="remove">Remove from Wish List</a>
                     </div>                    
                 </div>
             </div>
             <div class="item-price">
-                <p class="price">SGD $795</p>
+                <p class="price">$795</p>
             </div>
         </div>
 
@@ -48,7 +41,9 @@
         </div>
     </div>
 </body>
-<footer>
-    <div class="footer-left">FOOTER</div>
-</footer>
 </html>
+
+
+<?php
+$pageContent = ob_get_clean(); // Store the buffered content in $pageContent
+?>

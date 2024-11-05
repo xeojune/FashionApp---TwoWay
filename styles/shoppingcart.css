@@ -79,6 +79,11 @@ hr {
     background-color: #e0e0e0;
 }
 
+.quantity-controls {
+    position: relative; /* Ensure position is set to allow z-index */
+    z-index: 10; /* Bring the controls to the front */
+}
+
 .price {
     font-size: 1.2em;
     font-weight: bold;

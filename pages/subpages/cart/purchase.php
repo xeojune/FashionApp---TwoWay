@@ -1,29 +1,24 @@
 <?php
-    session_start();
+
     $user = $_SESSION['valid_user'];
-    if (isset($_POST['total'])) {
-        $total = $_POST['total'];
-    } else {
-        $total = 0;
-    }
+    $total = $_SESSION['total'];
 
-    @ $db = new mysqli('localhost', 'root','', 'Two-Way');
-
+    $db = new mysqli('127.0.0.1', 'root', '', 'TwoWay');
+    
     if (mysqli_connect_errno()) {
         echo "Error: Could not connect to database.  Please try again later.";
         exit;
     }
 
-    $userquery = "SELECT phonenumber, name FROM user WHERE name = '$user'";
+    $userquery = "SELECT PhoneNumber, Name FROM User WHERE Name = '$user'";
     $resultuser = $db->query($userquery);
 
     if ($resultuser && $resultuser->num_rows > 0) {
         $row = $resultuser->fetch_assoc();
-        $username = $row['name'];
-        $phonenumber = $row['phonenumber'];
+        $username = $row['Name'];
+        $phonenumber = $row['PhoneNumber'];
     } 
     $db->close();
-
 ?>
 
 <!DOCTYPE html>
@@ -31,30 +26,10 @@
 <head>
     <title>Purchase Confirmation</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../styles/nav.css" />
-    <link rel="stylesheet" href="../../styles/form.css" />
-    <link rel="stylesheet" href="../../styles/footer.css" />
-    <link rel="stylesheet" href="../../styles/purchase.css" />
+    <link rel="stylesheet" href="../../../../styles/form.css" />
+    <link rel="stylesheet" href="../../../../styles/purchase.css" />
 </head>
 <body>
-    <div id='header-wrapper'>
-      <div class="header-wrapper">
-          <div class="logo-wrapper">
-              <img src="../../../public/images/logoimage/images.png" alt="logo">
-          </div>
-          <div class="nav-wrapper">
-          <a href="index.php?page=home" class="headerItem">HOME</a>
-              <a href="index.php?page=shop" class="headerItem">SHOP</a>
-              <a href="index.php?page=profile" class="headerItem">PROFILE</a>
-              <div class="search-wrapper">
-                  <img src="../../../public/images/icons/searchicon.png" alt="Search Icon" width="24" height="24" class='searchBtn'>
-              </div>
-              <div class="cart-wrapper">
-                  <img src="../../../public/images/icons/shopicon.png" alt="Cart Icon" width="24" height="22" class='cartBtn'>
-              </div>
-          </div>
-      </div>
-    </div>
     <div class="container">
         <h1>Purchase Confirmation</h1>
         <div class="order-summary">
@@ -64,7 +39,6 @@
             <p>Delivery<span>$ 2.00</span></p>
             <strong><p>Total (SGD) <span>$ <?php echo number_format($total, 2); ?></span></p></strong>
         </div>
-
         <h2>Delivery Information</h2>
         <div class="info-box">
             <form action="completedorder.php" method="POST">
@@ -113,6 +87,10 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript" src="../../script/card.js"></script>
+    <script type="text/javascript" src="../../../../scripts/card.js"></script>
 </body>
 </html>
+
+<?php
+$pageContent = ob_get_clean(); // Store the buffered content in $pageContent
+?>

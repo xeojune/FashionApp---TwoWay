@@ -1,176 +1,160 @@
 <?php
-    session_start();
-    $user = $_SESSION['valid_user'];
+    $pageTitle = "cart"; // Set the page title
+
+    // Start output buffering to capture the content
+    ob_start();
 
     $count = 0;
 
-    @ $db = new mysqli('localhost', 'root','', 'Two-Way');
+    if (!empty($_SESSION['valid_user'])) {
+        $user = $_SESSION['valid_user'];
 
-    if (mysqli_connect_errno()) {
-        echo "Error: Could not connect to database.  Please try again later.";
-        exit;
-    }
-
-    $userquery = "SELECT userid, name FROM user WHERE name = '$user'";
-    $resultuser = $db->query($userquery);
-
-    if ($resultuser && $resultuser->num_rows > 0) {
-        $row = $resultuser->fetch_assoc();
-        $userid = $row['userid'];
-        $username = $row['name'];
-
-        // Query to get items from the cart using the extracted userid
-        $cartquery = "SELECT * FROM cart WHERE name = '$username'";
-        $resultcart = $db->query($cartquery);
+        $db = new mysqli('127.0.0.1', 'root', '', 'TwoWay');
     
-        if ($resultcart && $resultcart->num_rows > 0) {
-            while ($cartrow = $resultcart->fetch_assoc()) {
-                $count = $count + 1;
-                $brand = $cartrow['brand'];
-                $description = $cartrow['description'];
-                $quantity = $cartrow['quantity'];
-                $size = $cartrow['size'];
-                $price = $cartrow['price'];
-
+        if (mysqli_connect_errno()) {
+            echo "Error: Could not connect to database.  Please try again later.";
+            exit;
+        }
+    
+        $userquery = "SELECT Name FROM User WHERE Name = '$user'";
+        $resultuser = $db->query($userquery);
+    
+        if ($resultuser && $resultuser->num_rows > 0) {
+            $row = $resultuser->fetch_assoc();
+            $username = $row['Name'];
+    
+            // Query to get items from the cart using the extracted userid
+            $cartquery = "SELECT * FROM Cart WHERE Name = '$username'";
+            $resultcart = $db->query($cartquery);
+        
+            if ($resultcart && $resultcart->num_rows > 0) {
+                while ($cartrow = $resultcart->fetch_assoc()) {
+                    $count = $count + 1;
+                }
             }
         }
+        $db->close();
     }
-    // Create the query to get the image path for the specified brand from ProductImages table
-    $imagesquery = "SELECT * FROM ProductImages WHERE image LIKE '%$brand%'";
-    $resultcart = $db->query($imagesquery);
-    if ($resultcart->num_rows > 0) {
-        while ($row = $resultcart->fetch_assoc()) {
-            $image = $row["Image"];
-        }
-    }
-    $db->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Shopping Cart</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../styles/nav.css" />
-    <link rel="stylesheet" href="../../styles/form.css" />
-    <link rel="stylesheet" href="../../styles/footer.css" />
-    <link rel="stylesheet" href="../../styles/shoppingcart.css" />
-    <script type="text/javascript" src="../../script/shoppingcart_qty.js"></script>
+    <link rel="stylesheet" href="../../../../styles/form.css" />
+    <link rel="stylesheet" href="../../../../styles/shoppingcart.css" />
+    <script type="text/javascript" src="../../../../scripts/shoppingcart_qty.js"></script>
 </head>
 <body>
-    <div id='header-wrapper'>
-      <div class="header-wrapper">
-          <div class="logo-wrapper">
-              <img src="../../../public/images/logoimage/images.png" alt="logo">
-          </div>
-          <div class="nav-wrapper">
-          <a href="index.php?page=home" class="headerItem">HOME</a>
-              <a href="index.php?page=shop" class="headerItem">SHOP</a>
-              <a href="index.php?page=profile" class="headerItem">PROFILE</a>
-              <div class="search-wrapper">
-                  <img src="../../../public/images/icons/searchicon.png" alt="Search Icon" width="24" height="24" class='searchBtn'>
-              </div>
-              <div class="cart-wrapper">
-                  <img src="../../../public/images/icons/shopicon.png" alt="Cart Icon" width="24" height="22" class='cartBtn'>
-              </div>
-          </div>
-      </div>
-    </div>
-    <?php 
-        echo "Welcome back, " .$user;
-    ?>
     <div class="container">
         <h1>Shopping Bag</h1>
         <p> <?php echo $count;?> items</p>
         <hr>
         <?php 
             if ($count > 0) {
-                session_start();
                 $user = $_SESSION['valid_user'];
-
-                $count = 0;
-
-                @ $db = new mysqli('localhost', 'root', '', 'Two-Way');
+                $db = new mysqli('127.0.0.1', 'root', '', 'TwoWay');
 
                 if (mysqli_connect_errno()) {
                     echo "Error: Could not connect to database. Please try again later.";
                     exit;
                 }
 
-                $userquery = "SELECT userid, name FROM user WHERE name = '$user'";
+                $userquery = "SELECT Name FROM User WHERE Name = '$user'";
                 $resultuser = $db->query($userquery);
 
                 if ($resultuser && $resultuser->num_rows > 0) {
                     $row = $resultuser->fetch_assoc();
-                    $userid = $row['userid'];
-                    $username = $row['name'];
+                    $username = $row['Name'];
 
-                    // Query to get items from the cart using the extracted userid
-                    $cartquery = "SELECT * FROM cart WHERE name = '$username'";
-                    $resultcart = $db->query($cartquery);
+                // Query to get items from the cart using the extracted userid
+                $cartquery = "SELECT * FROM Cart WHERE name = '$username'";
+                $resultcart = $db->query($cartquery);
                 
                     if ($resultcart && $resultcart->num_rows > 0) {
                         while ($cartrow = $resultcart->fetch_assoc()) {
-                            $count++;
-                            $brand = $cartrow['brand'];
-                            $description = $cartrow['description'];
-                            $quantity = $cartrow['quantity'];
-                            $size = $cartrow['size'];
-                            $price = $cartrow['price'];
+                            $productID = $cartrow['ProductID'];
+                            $Quantity = $cartrow['Quantity'];
+                            $Size = $cartrow['Size'];
+                            $Price = $cartrow['Price'];
 
-                            // Query to get the image path for the current brand
-                            $imagesquery = "SELECT * FROM ProductImages WHERE image LIKE '%$brand%'";
-                            $resultImage = $db->query($imagesquery);
-                            $image = ''; // Initialize image variable
+                            $cartDetailsQuery = "
+                            SELECT 
+                                Cart.Name AS CartName,
+                                Cart.ProductID,
+                                Products.ProductName,
+                                Products.BrandCode,
+                                ProductImages.image,
+                                Brands.BrandName
+                            FROM 
+                                Cart
+                            JOIN 
+                                Products ON Cart.ProductID = Products.ProductID
+                            LEFT JOIN 
+                                ProductImages ON Products.ProductID = ProductImages.ProductID
+                            JOIN 
+                                Brands ON Products.BrandCode = Brands.BrandCode
+                            WHERE 
+                                Cart.ProductID = '$productID'";
+                            
+                           
+                            $resultCartDetails = $db->query($cartDetailsQuery);
 
-                            if ($resultImage && $resultImage->num_rows > 0) {
-                                $imageRow = $resultImage->fetch_assoc();
-                                $image = $imageRow['image']; // Adjust the field name if necessary
+                            if ($resultCartDetails && $resultCartDetails->num_rows > 0) {
+                                while ($cartDetails = $resultCartDetails->fetch_assoc()) {
+                                    $cartName = $cartDetails['CartName'];
+                                    $productID = $cartDetails['ProductID'];
+                                    $productName = $cartDetails['ProductName'];
+                                    $brandCode = $cartDetails['BrandCode'];
+                                    $productImage = $cartDetails['image'];
+                                    $brandName = $cartDetails['BrandName'];
+                                }
+                            } else {
+                                echo "No cart details found.";
                             }
+
         ?>        
                 <div class="shopping-item">
-                    <img src="<?php echo $image; ?>" alt="Item Image" class="item-image">
+                    <img src="<?php echo $productImage; ?>" alt="Item Image" class="item-image">
                     <div class="item-details">
-                        <h2>Brand: <?php echo $brand; ?></h2>
-                        <p>Item Name: <?php echo $description; ?></p>
-                        <p>Size: <?php echo $size; ?></p>
+                        <h2>Brand: <?php echo $brandName; ?></h2>
+                        <p>Item Name: <?php echo $productName; ?></p>
+                        <p>Size: <?php echo $Size; ?></p>
+                        <p>Quantity: <?php echo $Quantity?></p>
                         <div class="actions">
-                            <a href="removefromcart.php">Remove from Bag</a>
+                            <a href="index.php?page=removecart&productID=<?php echo $productID; ?>">Remove from Bag</a>
                         </div>
                     </div>
                     <div class="item-price-quantity">
-                        <p class="price">$<?php echo $price; ?></p>
-                        <input type="hidden" id="hidden-price" value="<?php echo $price; ?>">
-                        <div class="quantity-controls">
-                            <button onclick="decreaseQuantity()">-</button>
-                            <input type="text" id="quantity" value="<?php echo $quantity; ?>" readonly style="width: 30px; height:25px; text-align: center;" />
-                            <button onclick="increaseQuantity()">+</button>
-                        </div>
+                        <p class="price">$<?php echo $Price; ?></p>
+                        <input type="hidden" id="hidden-price" value="<?php echo $Price; ?>">
                     </div>
                 </div>
         <?php 
+                    }
+                }
             }
+            $db->close();
         }
-    }
-    $db->close();
-}
-?>
-
+        ?>
+        <?php if (!empty($_SESSION['valid_user'])) {?>
         <div class="order-summary">
             <h3>Order summary</h3>
             <div class="summary-details">
+  
                 <p>Delivery<span id="total"> <?php if($count == 0) { echo "$0.00" ;} else {echo "$2.00";} ?></span></p>
-                <strong><p>Total (SGD) <span id="total-price">$<?php  if($count == 0) { echo "0.00" ;} else {echo number_format($quantity*$price+2.00,2);}?></span></p></strong>
+                <strong><p>Total (SGD) <span id="total-price">$<?php  if($count == 0) { echo "0.00" ;} else {echo number_format($Quantity*$Price+2.00,2);}?></span></p></strong>
             </div>
             <?php if ($count > 0) {?>
-            <form action="purchase.php" method="POST">
-                <input type="hidden" name="total" value="<?php echo number_format($quantity*$price+2.00,2); ?>">
+            <form action="index.php?page=purchase" method="POST">
+                <input type="hidden" name="total" value="<?php session_start();  $_SESSION['total'] = $Quantity * $Price + 2.00; echo "Quantity: $Quantity, Price: $price"; ?>">
                 <button type="submit" class="purchase-btn">Proceed to purchase</button>
             </form>
-            <?php }?>
+            <?php } }?>
         </div>
     </div>
 </body>
-<footer>
-    <div class="footer-left">FOOTER</div>
-</footer>
 </html>
+
+<?php
+$pageContent = ob_get_clean(); // Store the buffered content in $pageContent
+?>

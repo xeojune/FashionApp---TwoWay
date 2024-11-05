@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="../../../styles/LeftContents.css">
 <aside class="left-contents-wrapper">
     <div class="goods-image-wrapper">
-        <img class="goods-image" src="<?php echo htmlspecialchars($productData['thumbnail_url']); ?>" alt="<?php echo htmlspecialchars($productData['eng_name']); ?>">
+        <img class="goods-image" src="<?php echo htmlspecialchars($productData['Image']); ?>" alt="<?php echo htmlspecialchars($productData['ProductName']); ?>">
     </div>
     <div class="deal-notice">
         <div class="notice-wrapper">

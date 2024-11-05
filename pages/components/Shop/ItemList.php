@@ -12,12 +12,68 @@ $CATEGORY_LIST = [
     ['id' => 8, 'src' => '../../../public/images/categoryImg/game.png', 'text' => 'LifeStyle'],
 ];
 
-include('GoodsData.php');
+$FILTER_CATEGORY = [
+    'filterName' => 'Categories',
+    'filterList' => [
+        ['id' => 1, 'name' => 'Shoes', 'query' => 'Shoes'],
+        ['id' => 2, 'name' => 'Clothes', 'query' => 'Clothes'],
+        ['id' => 3, 'name' => 'Accessories', 'query' => 'Accessories'],
+        ['id' => 4, 'name' => 'Life', 'query' => 'Life'],
+        ['id' => 5, 'name' => 'Tech', 'query' => 'Tech'],
+    ],
+];
 
+$PRICE_FILTER = [
+    'filterName' => 'Price',
+    'filterList' => [
+        ['id' => 1, 'name' => '$100 or less', 'query' => '0-100'],
+        ['id' => 2, 'name' => '$100 - $300', 'query' => '100-300'],
+        ['id' => 3, 'name' => '$300 - $500', 'query' => '300-500'],
+        ['id' => 4, 'name' => '$500 - $1000', 'query' => '500-1000'],
+        ['id' => 5, 'name' => '$1000 - $2000', 'query' => '1000-2000'],
+        ['id' => 6, 'name' => '$2000 or more', 'query' => '2000-'],
+    ],
+];
 
 // Set default limit
 $limit = isset($_POST['limit']) ? (int)$_POST['limit'] : 8;
 
+// Filter Data
+$selectFilter = $_POST['selectFilter'] ?? [];  // Ensure this is an array if selecting multiple values
+$selectPrice = $_POST['selectPrice'] ?? [];    // Ensure this is an array if selecting multiple values
+$selectShoeSize = $_POST['selectShoeSize'] ?? [];
+$selectClothSize = $_POST['selectClothSize'] ?? [];
+
+// Map selected IDs to category names
+$selectedCategories = array_map(function($id) use ($FILTER_CATEGORY) {
+    foreach ($FILTER_CATEGORY['filterList'] as $category) {
+        if ($category['id'] == $id) {
+            return $category['query']; // Map ID to category name
+        }
+    }
+    return null;
+}, $selectFilter);
+
+// Map selected price IDs to price ranges
+$selectedPriceRanges = array_map(function($id) use ($PRICE_FILTER) {
+    foreach ($PRICE_FILTER['filterList'] as $priceRange) {
+        if ($priceRange['id'] == $id) {
+            // Parse min and max prices from the query string (e.g., '0-100' or '2000-')
+            [$minPrice, $maxPrice] = explode('-', $priceRange['query']);
+            return [
+                'min' => (int)$minPrice,
+                'max' => $maxPrice !== '' ? (int)$maxPrice : null  // null for no upper limit
+            ];
+        }
+    }
+    return null;
+}, $selectPrice);
+
+// Remove any null values (in case of mismatches)
+$selectedCategories = array_filter($selectedCategories);
+
+// Remove any null values (in case of mismatches)
+$selectedPriceRanges = array_filter($selectedPriceRanges);
 
 // Connect to the database 이게 맞는지 모르겠음 
 $db = new mysqli('127.0.0.1', 'root', '', 'TwoWay');
@@ -28,28 +84,61 @@ if ($db->connect_error) {
     exit;
 }
 
-// SQL query to fetch products with the limit
-$sql = "SELECT * FROM Products LIMIT ?";
+$sql = "SELECT * FROM Products";
+$conditions = [];  // Array to store conditions for the WHERE clause
+$params = [];      // Array to store bind parameters
+$types = '';       // String to store parameter types for bind_param
+
+// Category filter
+if (!empty($selectedCategories)) {
+    $placeholders = implode(',', array_fill(0, count($selectedCategories), '?'));
+    $conditions[] = "Category IN ($placeholders)";
+    $params = array_merge($params, $selectedCategories);
+    $types .= str_repeat('s', count($selectedCategories)); // 's' for each category name
+}
+
+// Apply price filter as explained above
+if (!empty($selectedPriceRanges)) {
+    $priceConditions = [];
+    foreach ($selectedPriceRanges as $range) {
+        if ($range['max'] !== null) {
+            $priceConditions[] = "(Products.Price >= ? AND Products.Price <= ?)";
+            $params[] = $range['min'];
+            $params[] = $range['max'];
+            $types .= 'ii';
+        } else {
+            $priceConditions[] = "(Products.Price >= ?)";
+            $params[] = $range['min'];
+            $types .= 'i';
+        }
+    }
+    $conditions[] = '(' . implode(' OR ', $priceConditions) . ')';
+}
+
+// Combine conditions into the WHERE clause
+if (!empty($conditions)) {
+    $sql .= ' WHERE ' . implode(' AND ', $conditions);
+}
+
+// Add the limit to the query
+$sql .= " LIMIT ?";
+$params[] = $limit;
+$types .= 'i';
+
+// Prepare the statement
 $stmt = $db->prepare($sql);
-$stmt->bind_param("i", $limit);
+
+// Bind parameters dynamically
+$stmt->bind_param($types, ...$params);
+
+
+// Execute the statement and fetch results
 $stmt->execute();
 $displayedProducts = $stmt->get_result();
 
 // Close the statement and connection after fetching the data
 $stmt->close();
 $db->close();
-
-
-
-// Get the products to display based on the limit
-// $displayedProducts = array_slice($DUMMY_PRODUCTS, 0, $limit);
-
-
-// Filter Data
-$selectFilter = $_POST['selectFilter'] ?? [];  // Ensure this is an array if selecting multiple values
-$selectPrice = $_POST['selectPrice'] ?? [];    // Ensure this is an array if selecting multiple values
-$selectShoeSize = $_POST['selectShoeSize'] ?? [];
-$selectClothSize = $_POST['selectClothSize'] ?? [];
 
 // Calculate `totalFilter` based on selected filters
 $totalFilter = count($selectPrice) + count($selectFilter) + count($selectShoeSize) + count($selectClothSize);
@@ -84,6 +173,7 @@ $isFilterSelected = $totalFilter > 0;
             </div>
 
             <form id="filter-form" method="POST" action="">
+                
                     <!-- Include Category Filter -->
                 <?php $filterData = $FILTER_CATEGORY; include 'CategoryFilter.php'; ?>
 
@@ -173,7 +263,7 @@ $isFilterSelected = $totalFilter > 0;
                 </div>
                 <?php include 'SortFilter.php'; ?>
             </div>
-            <?php if (!empty($displayedProducts)): ?>
+            <?php if ($displayedProducts->num_rows > 0): ?>
                 <?php include 'ItemCard.php'; ?>
             <?php else: ?>
                 <div class="item-not-found">No items found</div>
@@ -181,12 +271,6 @@ $isFilterSelected = $totalFilter > 0;
         </div>
     </div>
 </div>
-
-<?php
-echo "<pre>";
-print_r($_POST);  // This will display all POST data received
-echo "</pre>";
-?>
 
 <script src="../../../scripts/Itemlist.js"></script>
 

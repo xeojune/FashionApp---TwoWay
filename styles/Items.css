@@ -14,7 +14,7 @@
   
   /* Title Section */
   .item-title {
-    margin-top: 1.5rem; /* Adjust as per your design */
+    margin-top: 0.5rem; /* Adjust as per your design */
     overflow: auto;
     cursor: pointer;
   }
@@ -22,6 +22,11 @@
   .description {
     margin-bottom: 0.5rem; /* Adjust as per your design */
     font-size: 0.875rem; /* Small size for description */
+    width: 14rem;
+  }
+
+  .brand-name {
+    font-weight: bold;
   }
   
   .item-name-en {

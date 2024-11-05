@@ -8,15 +8,15 @@
         <dl class="info-list">
             <div class="info-item-wrapper">
                 <dt class="info-list-title">Model Number</dt>
-                <dd class="info-list-desc"><?php echo htmlspecialchars($productData['model_number'] ?? ''); ?></dd>
+                <dd class="info-list-desc"><?php echo htmlspecialchars($productData['ModelNumber'] ?? ''); ?></dd>
             </div>
             <div class="info-item-wrapper">
                 <dt class="info-list-title">Date Released</dt>
-                <dd class="info-list-desc"><?php echo htmlspecialchars($productData['release_date'] ?? ''); ?></dd>
+                <dd class="info-list-desc"><?php echo htmlspecialchars(date('Y-m-d', strtotime($productData['DateCreated'] ?? '')));  ?></dd>
             </div>
             <div class="info-item-wrapper">
                 <dt class="info-list-title">Selling Price</dt>
-                <dd class="info-list-desc">$<?php echo htmlspecialchars($productData['price'] ?? ''); ?></dd>
+                <dd class="info-list-desc">$<?php echo htmlspecialchars($productData['Price'] ?? ''); ?></dd>
             </div>
         </dl>
     </div>

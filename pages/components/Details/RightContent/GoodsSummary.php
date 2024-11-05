@@ -1,23 +1,28 @@
 <?php if (!isset($productData)) return; 
 
+// Set sales button prices based on product price with a 5% difference as an example
 $SALES_BUTTON = [
     [
         "id" => 1,
         "name" => "Buy",
-        "price" => "222,000"
+        "price" => number_format($productData['Price'] * 1.05, 2) // 5% more than product price
     ],
     [
         "id" => 2,
         "name" => "Sell",
-        "price" => "210,000"
+        "price" => number_format($productData['Price'] * 0.95, 2) // 5% less than product price
     ]
 ];
 
+// Calculate the recent price increase or decrease (e.g., +10.5% example can be dynamic)
+$recentPriceChange = number_format($productData['Price'] * 0.1, 2); // 10% increase as example
+$recentPriceChangePercentage = 10.5; // This can be dynamically calculated too
+$bookmarkCount = 5719; // Replace this with dynamic data if available
 ?>
 
 <link rel="stylesheet" href="../../../styles/GoodsSummary.css">
 <div class="summary-wrapper">
-    <p class="goods-name-eng"><?php echo htmlspecialchars($productData['eng_name']); ?></p>
+    <p class="goods-name-eng"><?php echo htmlspecialchars($productData['ProductName']); ?></p>
 
     <div class="goods-size">
         <span class="goods-size-label">Size</span>
@@ -30,10 +35,10 @@ $SALES_BUTTON = [
     <div class="goods-price-wrapper">
         <span class="recent-price-label">Recent Price</span>
         <div class="recent-price-wrapper">
-            <span class="recent-price">$<?php echo htmlspecialchars($productData['price']); ?></span>
+            <span class="recent-price">$<?php echo htmlspecialchars(number_format($productData['Price'], 2)); ?></span>
             <div class="price-amount-wrapper">
                 <span class="price-amount-icon">▲</span>
-                <span class="price-amount">$24,000 (+10.5%)</span>
+                <span class="price-amount">$<?php echo htmlspecialchars($recentPriceChange); ?> (+<?php echo htmlspecialchars($recentPriceChangePercentage); ?>%)</span>
             </div>
         </div>
     </div>
@@ -57,7 +62,7 @@ $SALES_BUTTON = [
     <button class="bookmark-btns-wrapper">
         <span class="bookmark-icon">🔖</span>
         <span class="bookmark-btns-label">Bookmark Product</span>
-        <span class="bookmark-btns-nums">5,719</span>
+        <span class="bookmark-btns-nums"><?php echo number_format($bookmarkCount); ?></span>
     </button>
 </div>
 

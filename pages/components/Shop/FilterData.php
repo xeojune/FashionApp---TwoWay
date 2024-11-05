@@ -4,11 +4,11 @@
 $FILTER_CATEGORY = [
     'filterName' => 'Categories',
     'filterList' => [
-        ['id' => 1, 'name' => 'Shoes', 'query' => '1'],
-        ['id' => 2, 'name' => 'Clothes', 'query' => '2'],
-        ['id' => 3, 'name' => 'Accessories', 'query' => '3'],
-        ['id' => 4, 'name' => 'Life', 'query' => '4'],
-        ['id' => 5, 'name' => 'Tech', 'query' => '5'],
+        ['id' => 1, 'name' => 'Shoes', 'query' => 'Shoes'],
+        ['id' => 2, 'name' => 'Clothes', 'query' => 'Clothes'],
+        ['id' => 3, 'name' => 'Accessories', 'query' => 'Accessories'],
+        ['id' => 4, 'name' => 'Life', 'query' => 'Life'],
+        ['id' => 5, 'name' => 'Tech', 'query' => 'Tech'],
     ],
 ];
 
@@ -20,6 +20,7 @@ $PRICE_FILTER = [
         ['id' => 3, 'name' => '$300 - $500', 'query' => '300000-500000'],
         ['id' => 4, 'name' => '$500 - $1000', 'query' => '500000-1000000'],
         ['id' => 5, 'name' => '$1000 - $2000', 'query' => '1000000-20000000'],
+        ['id' => 6, 'name' => '$2000 more', 'query' => '20000000-'],
     ],
 ];
 

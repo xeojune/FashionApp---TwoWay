@@ -6,7 +6,7 @@ $randomColor = $backgroundColors[array_rand($backgroundColors)];
 
 <link rel="stylesheet" href="../../../styles/Items.css">
 
-<div class="item-component" onclick="goToDetail(<?php echo htmlspecialchars($product['product_id']); ?>)">
+<div class="item-component" onclick="goToDetail(<?php echo htmlspecialchars($product['ProductID']); ?>)">
     <img 
         class="item-img" 
         src="<?php echo htmlspecialchars($thumbnail_url); ?>" 
@@ -15,6 +15,7 @@ $randomColor = $backgroundColors[array_rand($backgroundColors)];
     />
     <div class="item-title">
         <div class="description">
+            <div class="brand-name"><?php echo htmlspecialchars($brand); ?></div>
             <div class="item-name-en"><?php echo htmlspecialchars($eng_name); ?></div>
         </div>
         <div class="amount">

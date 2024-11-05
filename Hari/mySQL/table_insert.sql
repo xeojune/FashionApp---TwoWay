@@ -14,16 +14,17 @@ insert into wishlist values
     ("2000", 1, "1000");
 
 insert into cart values
-    (1, "adidas", "Shoe", "1", "XS", 19.00),
-    (2, "asics", "Shoe", "1", "S", 20.00),
-    (3, "chromehearts", "Shoe", "1", "L", 21.00),
-    (4, "converse", "Shoe", "1", "M", 22.00),
-    (5, "iab", "Shoe", "1", "XL", 23.00),
-    (6, "newbalance", "Shoe", "1", "XL", 24.00),
-    (7, "Nike", "Shoe", "1", "XL", 24.00),
-    (8, "palace", "Shoe", "1", "XL", 24.00),
-    (9, "stussy", "Shoe", "1", "XL", 24.00),
-    (10, "supreme", "Shoe", "1", "XL", 24.00);
+    ("hari", "adidas", "Shoe", "1", "XS", 19.00),
+    ("password", "asics", "Shoe", "1", "S", 20.00),
+    ("password", "chromehearts", "Shoe", "1", "S", 20.00),
+    ("password1", "chromehearts", "Shoe", "1", "L", 21.00),
+    ("password2", "converse", "Shoe", "1", "M", 22.00),
+    ("password3", "iab", "Shoe", "1", "XL", 23.00),
+    ("password4", "newbalance", "Shoe", "1", "XL", 24.00),
+    ("password5", "Nike", "Shoe", "1", "XL", 24.00),
+    ("password6", "palace", "Shoe", "1", "XL", 24.00),
+    ("password7", "stussy", "Shoe", "1", "XL", 24.00),
+    ("password8", "supreme", "Shoe", "1", "XL", 24.00);
 
 INSERT INTO ProductImages VALUES
     (1,'3', "../../assets/shortcutImg/adidas.png"),

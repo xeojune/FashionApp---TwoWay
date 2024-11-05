@@ -17,7 +17,7 @@ create table wishlist
 
 create table cart
 (
-    userid int unsigned not null auto_increment primary key,
+    name varchar(100),
     brand varchar(100),
     description varchar(100),
     quantity int,

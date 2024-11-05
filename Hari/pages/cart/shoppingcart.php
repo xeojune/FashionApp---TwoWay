@@ -20,7 +20,7 @@
         $username = $row['name'];
 
         // Query to get items from the cart using the extracted userid
-        $cartquery = "SELECT * FROM cart WHERE userid = '$userid'";
+        $cartquery = "SELECT * FROM cart WHERE name = '$username'";
         $resultcart = $db->query($cartquery);
     
         if ($resultcart && $resultcart->num_rows > 0) {
@@ -31,11 +31,7 @@
                 $quantity = $cartrow['quantity'];
                 $size = $cartrow['size'];
                 $price = $cartrow['price'];
-                // Display cart item details
-                // echo "Item ID: " . $cartrow['brand'] . "<br>";
-                // echo "Item Name: " . $cartrow['description'] . "<br>";
-                // echo "Quantity: " . $cartrow['quantity'] . "<br><br>";
-                // echo "Quantity: " . $cartrow['size'] . "<br><br>";
+
             }
         }
     }
@@ -48,9 +44,7 @@
         }
     }
     $db->close();
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,29 +83,78 @@
         <p> <?php echo $count;?> items</p>
         <hr>
         <?php 
-        if ($count > 0){
+            if ($count > 0) {
+                session_start();
+                $user = $_SESSION['valid_user'];
+
+                $count = 0;
+
+                @ $db = new mysqli('localhost', 'root', '', 'Two-Way');
+
+                if (mysqli_connect_errno()) {
+                    echo "Error: Could not connect to database. Please try again later.";
+                    exit;
+                }
+
+                $userquery = "SELECT userid, name FROM user WHERE name = '$user'";
+                $resultuser = $db->query($userquery);
+
+                if ($resultuser && $resultuser->num_rows > 0) {
+                    $row = $resultuser->fetch_assoc();
+                    $userid = $row['userid'];
+                    $username = $row['name'];
+
+                    // Query to get items from the cart using the extracted userid
+                    $cartquery = "SELECT * FROM cart WHERE name = '$username'";
+                    $resultcart = $db->query($cartquery);
+                
+                    if ($resultcart && $resultcart->num_rows > 0) {
+                        while ($cartrow = $resultcart->fetch_assoc()) {
+                            $count++;
+                            $brand = $cartrow['brand'];
+                            $description = $cartrow['description'];
+                            $quantity = $cartrow['quantity'];
+                            $size = $cartrow['size'];
+                            $price = $cartrow['price'];
+
+                            // Query to get the image path for the current brand
+                            $imagesquery = "SELECT * FROM ProductImages WHERE image LIKE '%$brand%'";
+                            $resultImage = $db->query($imagesquery);
+                            $image = ''; // Initialize image variable
+
+                            if ($resultImage && $resultImage->num_rows > 0) {
+                                $imageRow = $resultImage->fetch_assoc();
+                                $image = $imageRow['image']; // Adjust the field name if necessary
+                            }
         ?>        
-        <div class="shopping-item">
-            <img src=<?php echo $image;?> alt="Item Image" class="item-image">
-            <div class="item-details">
-                <h2>Brand: <?php echo $brand;?></h2>
-                <p>Item Name: <?php echo $description;?></p>
-                <p>Size: <?php echo $size;?></p>
-                <div class="actions">
-                    <a href="removefromcart.php">Remove from Bag</a>
+                <div class="shopping-item">
+                    <img src="<?php echo $image; ?>" alt="Item Image" class="item-image">
+                    <div class="item-details">
+                        <h2>Brand: <?php echo $brand; ?></h2>
+                        <p>Item Name: <?php echo $description; ?></p>
+                        <p>Size: <?php echo $size; ?></p>
+                        <div class="actions">
+                            <a href="removefromcart.php">Remove from Bag</a>
+                        </div>
+                    </div>
+                    <div class="item-price-quantity">
+                        <p class="price">$<?php echo $price; ?></p>
+                        <input type="hidden" id="hidden-price" value="<?php echo $price; ?>">
+                        <div class="quantity-controls">
+                            <button onclick="decreaseQuantity()">-</button>
+                            <input type="text" id="quantity" value="<?php echo $quantity; ?>" readonly style="width: 30px; height:25px; text-align: center;" />
+                            <button onclick="increaseQuantity()">+</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="item-price-quantity">
-                <p class="price">$<?php echo $price;?></p>
-                <input type="hidden" id="hidden-price" value="<?php echo $price; ?>">
-                <div class="quantity-controls">
-                    <button onclick="decreaseQuantity()">-</button>
-                    <input type="text" id="quantity" value = <?php echo $quantity;?> readonly style="width: 30px; height:25px ; text-align: center;" />
-                    <button onclick="increaseQuantity()">+</button>
-                </div>
-            </div>
-        </div>
-        <?php }?>
+        <?php 
+            }
+        }
+    }
+    $db->close();
+}
+?>
+
         <div class="order-summary">
             <h3>Order summary</h3>
             <div class="summary-details">

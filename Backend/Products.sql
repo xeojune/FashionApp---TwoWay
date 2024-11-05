@@ -1,3 +1,14 @@
+-- Create WishList Table
+CREATE TABLE WishList (
+    WishProductID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ProductID INT NOT NULL,
+    Name VARCHAR(100) NOT NULL,
+    Price INT NOT NULL,
+    Size VARCHAR(100) NOT NULL,
+    Quantity INT NOT NULL,
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
+);
+
 -- Create Product Inventory Table
 CREATE TABLE ProductInventory (
     ProductSizeCode INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -88,9 +99,3 @@ CREATE TABLE ProductImages (
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
 );
 
--- Create WishList Table
-CREATE TABLE WishList (
-    WishProductID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    ProductID INT NOT NULL,
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
-);

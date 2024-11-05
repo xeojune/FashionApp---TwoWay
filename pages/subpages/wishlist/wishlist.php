@@ -1,7 +1,5 @@
 <?php
 $pageTitle = "Wishlist"; // Set the page title
-
-// Start output buffering to capture the content
 ob_start();
 ?>
 

@@ -41,10 +41,14 @@
             include('./pages/subpages/register/registersuccess.php'); // Load RegisterSuccess.php
         } else if ($page === 'cart') {
             include('./pages/subpages/cart/shoppingcart.php'); // Load shoppingcart.php
+        } else if (strpos($page, 'addcart') === 0) {
+            include('./pages/subpages/cart/addtocart.php'); // Load addtocart.php
         } else if ($page === 'removecart') {
             include('./pages/subpages/cart/removefromcart.php'); // Load removefromcart.php
         } else if ($page === 'wishlist') {
             include('./pages/subpages/wishlist/wishlist.php'); // Load wishlist.php
+        } else if (strpos($page, 'insertwishlist') === 0) {
+            include('./pages/subpages/wishlist/addtowishlist.php'); // Load addtowishlist.php
         } else if ($page === 'purchase'){
             include('./pages/subpages/cart/purchase.php'); // Load purchase.php            
         } else if ($page === 'profile'){

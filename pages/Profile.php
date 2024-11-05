@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 $pageTitle = "Profile"; // Set the page title
 
@@ -12,17 +11,17 @@ if ($db->connect_error) {
 }
 
 // Check if the user is logged in
-// if (!isset($_SESSION['userid'])) {
-//     echo "You need to log in to view this page.";
-//     exit;
-// }
+if (!isset($_SESSION['valid_user'])) {
+    echo "You need to log in to view this page.";
+    exit;
+}
 
 // Get the user's ID from the session
-// $userid = $_SESSION['userid'];
-$userid = '1';
+$userid = $_SESSION['valid_user'];
+
 
 // Fetch user data from the database
-$query = "SELECT Name, Email, PhoneNumber FROM User WHERE Userid = '$userid'";
+$query = "SELECT Name, Email, PhoneNumber FROM User WHERE Name = '$userid'";
 $result = $db->query($query);
 
 
@@ -58,10 +57,6 @@ ob_start();
             <div class="login-item">
                 <label>Email Address</label>
                 <span><?php echo htmlspecialchars($email); ?></span>
-            </div>
-            <div class="login-item">
-                <label>Password</label>
-                <input type="password" value="**********" disabled>
             </div>
             <div class="login-item">
                 <label>Phone Number</label>

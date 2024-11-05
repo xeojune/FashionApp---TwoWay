@@ -73,7 +73,7 @@ $serializedData = urlencode(serialize($productData));
         <?php endforeach; ?>
     </div>
 
-    <button class="bookmark-btns-wrapper">
+    <button class="bookmark-btns-wrapper" onclick="addToWishlist()">
         <span class="bookmark-icon">🔖</span>
         <span class="bookmark-btns-label">Bookmark Product</span>
         <span class="bookmark-btns-nums"><?php echo number_format($bookmarkCount); ?></span>
@@ -81,23 +81,40 @@ $serializedData = urlencode(serialize($productData));
 </div>
 
 <script>
+let selectedSize = 'All Sizes';
+
 function toggleSizeDropdown() {
     var dropdown = document.getElementById("sizeDropdown");
     dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
 }
 
 function selectSize(size) {
+    selectedSize = size;
     document.querySelector('.size-select-text').innerText = size;
     document.getElementById("sizeDropdown").style.display = "none";
 }
 
 function goToDeal(action) {
     if (action === 'Buy') {
-        window.location.href = 'buy.php';
+        const productID = "<?php echo $productData['ProductID']; ?>";
+        const price = "<?php echo number_format($productData['Price'] * 1.05, 2); ?>";
+        const productName = "<?php echo urlencode($productData['ProductName']); ?>";
+        
+
+        window.location.href = `index.php?page=addcart&productID=${productID}&price=${price}&size=${encodeURIComponent(selectedSize)}&productName=${productName}`;
     } else if (action === 'Sell') {
         // Pass serialized data as a URL parameter
         window.location.href = `index.php?page=sell&data=<?php echo $serializedData; ?>`;
     }
+}
+
+function addToWishlist() {
+    const productID = "<?php echo $productData['ProductID']; ?>";
+    const price = "<?php echo number_format($productData['Price'] * 1.05, 2); ?>";
+    const productName = "<?php echo urlencode($productData['ProductName']); ?>";
+
+    // Redirect to wishlist.php with productID and productName as parameters
+    window.location.href = `index.php?page=insertwishlist&productID=${productID}&productName=${productName}&price=${price}&size=${encodeURIComponent(selectedSize)}`;
 }
 
 </script>

@@ -25,8 +25,6 @@ INSERT INTO Sizes (SizeName, SizeType) VALUES
 
 
 
-
-
 INSERT INTO Cart VALUES
     ("hari", 1, "1", "L", 19.00),
     ("password", 2, "2", "L", 20.00),

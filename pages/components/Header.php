@@ -10,12 +10,15 @@
     <div class="nav-wrapper">
     <a href="index.php?page=home" class="headerItem">HOME</a>
         <a href="index.php?page=shop" class="headerItem">SHOP</a>
-        <a href="index.php?page=profile" class="headerItem">PROFILE</a>
+    <?php  session_start();
+        if (!empty ($_SESSION['valid_user'])){
+            echo '<a href="index.php?page=profile" class="headerItem">PROFILE</a>';
+        }
+    ?>
         <div class="search-wrapper">
             <img src="../../../public/images/icons/searchicon.png" alt="Search Icon" width="24" height="24" class='searchBtn'>
         </div>
         <?php
-            session_start();
             if (!empty($_SESSION['valid_user'])) {
                 // Check if the user clicked the logout link
                 if (isset($_GET['page']) && $_GET['page'] == 'logout') {

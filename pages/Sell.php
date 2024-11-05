@@ -59,7 +59,7 @@ ob_start();
         <!-- Read-only input for price -->
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="text" id="price" name="price" value="$<?php echo number_format($price, 2); ?>" readonly>
+            <input type="text" id="price" name="price" value="$<?php echo number_format($price * 0.95, 2); ?>" readonly>
         </div>
 
         <!-- Submit button -->

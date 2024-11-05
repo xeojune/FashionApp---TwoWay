@@ -23,7 +23,6 @@
             <h4>Items Purchased:</h4>
             <ul>
                 <?php
-                    // Placeholder for purchased items (in a real application, you would retrieve these from a database)
                     $items = [
                         ["name" => "Product 1", "price" => 25.99],
                         ["name" => "Product 2", "price" => 15.49],

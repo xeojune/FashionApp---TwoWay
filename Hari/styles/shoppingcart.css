@@ -1,0 +1,142 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    margin: 0 0 10px;
+}
+
+p {
+    margin: 5px 0;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.shopping-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.shopping-item img {
+    max-width: 150px;
+    margin-right: 20px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-price-quantity {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.quantity-controls {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px; /* Space between the quantity controls and the price */
+}
+
+.quantity-controls button {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    outline: none;
+    margin: 0 2px;
+    font-size: 1em;
+}
+
+.quantity-controls input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+}
+
+.quantity-controls button:hover {
+    background-color: #e0e0e0;
+}
+
+.price {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.stock-info {
+    color: red;
+    font-weight: bold;
+}
+
+.actions a {
+    color: #000;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.order-summary {
+    margin-top: 20px;
+}
+
+.summary-details p {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.total {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.info-box {
+    background-color: #f1f5fb;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.purchase-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.purchase-btn:hover {
+    background-color: #333;
+}
+
+.payment-methods img {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 10px auto 0;
+}

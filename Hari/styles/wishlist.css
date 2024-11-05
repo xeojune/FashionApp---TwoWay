@@ -1,0 +1,90 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    margin: 0 0 10px;
+}
+
+p {
+    margin: 5px 0;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.wishlist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.wishlist-item img {
+    max-width: 150px;
+    margin-right: 20px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-price {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.actions a {
+    color: #000;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.actions a:hover {
+    text-decoration: underline;
+}
+
+.wishlist-summary {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.continue-shopping-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.continue-shopping-btn:hover {
+    background-color: #333;
+}
+
+.info-box {
+    background-color: #f1f5fb;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    color: #333;
+}

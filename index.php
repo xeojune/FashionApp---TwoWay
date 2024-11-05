@@ -51,6 +51,10 @@
             include('./pages/subpages/wishlist/addtowishlist.php'); // Load addtowishlist.php
         } else if ($page === 'purchase'){
             include('./pages/subpages/cart/purchase.php'); // Load purchase.php            
+        } else if ($page === 'ordertodb') {
+            include('./pages/subpages/cart/ordertodb.php'); // Load ordertodb.php 
+        } else if ($page === 'completed') {
+            include('./pages/subpages/cart/completedorder.php'); // Load completedorder.php 
         } else if ($page === 'profile'){
             include('./pages/Profile.php'); // Load Profile.php
         } else if (strpos($page, 'sell') === 0){

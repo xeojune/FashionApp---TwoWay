@@ -41,7 +41,7 @@
         </div>
         <h2>Delivery Information</h2>
         <div class="info-box">
-            <form action="completedorder.php" method="POST">
+            <form action="index.php?page=ordertodb" method="POST">
                 <label for="name">Full Name:</label>
                 <input type="text" id="name" name="name" required><br><br>
                 

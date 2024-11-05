@@ -1,3 +1,14 @@
+CREATE TABLE OrderDetails (
+    OrderID INT AUTO_INCREMENT PRIMARY KEY,
+    UserName VARCHAR(100),
+    ProductID INT,
+    ProductName VARCHAR(255),
+    BrandCode VARCHAR(50),
+    ProductImage VARCHAR(255),
+    BrandName VARCHAR(100),
+    CartName VARCHAR(100),
+    OrderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 -- Create WishList Table
 CREATE TABLE WishList (
     WishProductID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -34,14 +45,6 @@ CREATE TABLE Sizes (
 --     FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE,
 --     FOREIGN KEY (SizeCode) REFERENCES Sizes(SizeCode) ON DELETE CASCADE
 -- );
-
--- Create CartHistory Table
-CREATE TABLE CartHistory (
-    OrderCode INT, 
-    OrderStatusCode INT NOT NULL,
-    datecreated DATETIME not null, 
-    dateupdated DATETIME not null
-);
 
 -- Create Cart Table
 CREATE TABLE Cart (

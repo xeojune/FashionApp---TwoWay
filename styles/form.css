@@ -41,6 +41,8 @@ form input[type="text"]:focus, form input[type="password"]:focus {
 
 .logo{
     padding-bottom: 50px;
+    width: 100px;
+    height: auto;
 }
 
 .custom-button {

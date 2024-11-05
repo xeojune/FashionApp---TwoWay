@@ -1,3 +1,31 @@
+-- Create CartHistory Table
+CREATE TABLE CartHistory (
+    OrderCode INT, 
+    OrderStatusCode INT NOT NULL,
+    datecreated DATETIME not null, 
+    dateupdated DATETIME not null
+);
+
+-- Create Cart Table
+CREATE TABLE Cart (
+    Name VARCHAR(100) NOT NULL,
+    ProductID INT NOT NULL,
+    Quantity VARCHAR(100) NOT NULL,
+    Size VARCHAR(100) NOT NULL,
+    Price INT NOT NULL,
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
+
+-- Create User Table
+CREATE TABLE User (
+    Userid INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100),
+    Email VARCHAR(100),
+    Password VARCHAR(100),
+    PhoneNumber INT,
+    DateCreated DATE NOT NULL
+);
+
 -- Create Brands Table
 CREATE TABLE Brands (
     BrandCode INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

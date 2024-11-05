@@ -9,4 +9,3 @@ ob_start();
 $pageContent = ob_get_clean(); // Store the buffered content in $pageContent
 ?>
 
-

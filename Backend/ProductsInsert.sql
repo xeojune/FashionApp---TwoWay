@@ -1,3 +1,28 @@
+INSERT INTO Cart VALUES
+    ("hari", 1, "1", "L", 19.00),
+    ("password", 2, "2", "L", 20.00),
+    ("password", 3, "2", "L", 20.00),
+    ("password1", 4, "2", "L", 21.00),
+    ("password2", 5, "2", "L", 22.00),
+    ("password3", 6, "2", "L", 23.00),
+    ("password4", 7, "2", "L", 24.00),
+    ("password5", 8, "2", "L", 24.00),
+    ("password6", 9, "2", "L", 24.00),
+    ("password7", 10, "2", "L", 24.00),
+    ("password8", 11, "2", "L", 24.00);
+
+INSERT INTO User VALUES
+    (1, "hari", "example@email.com", "a9bcf1e4d7b95a22e2975c812d938889","90919221", "2024-05-10" ),
+    (2, "password", "passsword@email.com", "5f4dcc3b5aa765d61d8327deb882cf99","90919222", "2024-05-10" ),
+    (3, "password1", "password1@email.com", "7c6a180b36896a0a8c02787eeafb0e4c","90919223", "2024-05-10" ),
+    (4, "password2", "password2@email.com", "6cb75f652a9b52798eb6cf2201057c73","90919224", "2024-05-10" ),
+    (5, "password3", "password3@email.com", "819b0643d6b89dc9b579fdfc9094f28e","90919225", "2024-05-10" ),
+    (6, "password4", "password4@email.com", "34cc93ece0ba9e3f6f235d4af979b16c","90919226", "2024-05-10" ),
+    (7, "password5", "password5@email.com", "db0edd04aaac4506f7edab03ac855d56","90919227", "2024-05-10" ),
+    (8, "password6", "password6@email.com", "218dd27aebeccecae69ad8408d9a36bf","90919228", "2024-05-10" ),
+    (9, "password7", "password7@email.com", "00cdb7bb942cf6b290ceb97d6aca64a3","90919229", "2024-05-10" ),
+    (10, "password8", "password8@email.com", "b25ef06be3b6948c0bc431da46c2c738","90919230", "2024-05-10" );
+
 INSERT INTO Brands (BrandCode, BrandName) VALUES 
 (1, 'Nike'),
 (2, 'Adidas'),
@@ -74,9 +99,6 @@ INSERT INTO Products (BrandCode, ProductName, Price, DateCreated) VALUES
 (10, 'New Balance 1906R White Gold', 98, '2024-11-2'),
 (10, 'New Balance 530 Classic Grey', 70, '2024-11-2');
 
-
-
-
 INSERT INTO ProductImages (ProductID, Image) VALUES
 -- Nike Products
 ((SELECT ProductID FROM Products WHERE ProductName = 'Nike Air Force 1' LIMIT 1), '../../../public/images/productImg/Nike/nike_airforce1.jpg'),
@@ -146,6 +168,7 @@ INSERT INTO ProductImages (ProductID, Image) VALUES
 ((SELECT ProductID FROM Products WHERE ProductName = 'New Balance 2002R Eclipse Castlerock' LIMIT 1), '../../../public/images/productImg/NewBalance/newEclipse.png'),
 ((SELECT ProductID FROM Products WHERE ProductName = 'New Balance 1906R White Gold' LIMIT 1), '../../../public/images/productImg/NewBalance/newWhiteGold.png'),
 ((SELECT ProductID FROM Products WHERE ProductName = 'New Balance 530 Classic Grey' LIMIT 1), '../../../public/images/productImg/NewBalance/newClassicGray.png');
+
 
 
 

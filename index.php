@@ -25,6 +25,12 @@
             include('./pages/ItemDetail.php'); // Load ItemDetail.php if productId is set
         } elseif ($page === 'profile'){
             include('./pages/Profile.php'); // Load Profile.php
+        } elseif ($page === 'login'){
+            include('./pages/subpages/login/login.php'); // Load Login.php
+        } else if ($page === 'register'){
+            include('./pages/subpages/register/register.php'); // Load Register.php
+        } else if ($page === 'profile'){
+            include('./pages/Profile.php'); // Load Profile.php
         } else {
             include('./pages/Home.php'); // Load Home.php as default
         }

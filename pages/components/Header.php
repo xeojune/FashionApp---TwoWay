@@ -14,5 +14,6 @@
         <div class="cart-wrapper">
             <img src="../../../public/images/icons/shopicon.png" alt="Cart Icon" width="24" height="22" class='cartBtn'>
         </div>
+        <a href="index.php?page=login" class="headerItem">LOGIN</a>
     </div>
 </div>

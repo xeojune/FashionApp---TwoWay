@@ -31,6 +31,8 @@
             include('./pages/subpages/register/register.php'); // Load Register.php
         } else if ($page === 'profile'){
             include('./pages/Profile.php'); // Load Profile.php
+        } else if (strpos($page, 'sell') === 0){
+            include('./pages/Sell.php'); // Load Sell.php (check if the page stats with 'sell')
         } else {
             include('./pages/Home.php'); // Load Home.php as default
         }

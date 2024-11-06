@@ -30,7 +30,6 @@ $result = $stmt->get_result();
 <head>
     <title>Wish List</title>
     <meta charset="utf-8" />
-    <script type="text/javascript" src="../../../../scripts/wishlist.js"></script>
     <link rel="stylesheet" href="../../../../styles/wishlist.css" />
 </head>
 <body>

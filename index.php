@@ -51,6 +51,8 @@
             include('./pages/subpages/wishlist/wishlist.php'); // Load wishlist.php
         } else if (strpos($page, 'insertwishlist') === 0) {
             include('./pages/subpages/wishlist/addtowishlist.php'); // Load addtowishlist.php
+        } else if (strpos($page, 'removewishlist') === 0) {
+            include('./pages/subpages/wishlist/removewishlist.php'); // Load removewishlist.php
         } else if ($page === 'purchase'){
             include('./pages/subpages/cart/purchase.php'); // Load purchase.php            
         } else if ($page === 'ordertodb') {

@@ -38,6 +38,9 @@ if ($resultuser && $resultuser->num_rows > 0) {
             SELECT 
                 Cart.Name AS CartName,
                 Cart.ProductID,
+                Cart.Quantity,
+                Cart.Size,
+                Cart.Price,
                 Products.ProductName,
                 Products.BrandCode,
                 ProductImages.image,
@@ -63,11 +66,14 @@ if ($resultuser && $resultuser->num_rows > 0) {
                     $brandCode = $cartDetails['BrandCode'];
                     $productImage = $cartDetails['image'];
                     $brandName = $cartDetails['BrandName'];
+                    $quantity = $cartDetails['Quantity'];
+                    $size = $cartDetails['Size'];
+                    $price = $cartDetails['Price'];
 
                     // Insert the cart details into the OrderDetails table
                     $insertQuery = "
-                        INSERT INTO OrderDetails (UserName, ProductID, ProductName, BrandCode, ProductImage, BrandName, CartName)
-                        VALUES ('$username', '$productID', '$productName', '$brandCode', '$productImage', '$brandName', '$cartName')";
+                        INSERT INTO OrderDetails (UserName, ProductID, ProductName, BrandCode, ProductImage, BrandName, CartName, Quantity, Size, Price)
+                        VALUES ('$username', '$productID', '$productName', '$brandCode', '$productImage', '$brandName', '$cartName', '$quantity', '$size', '$price')";
 
                     if (!$db->query($insertQuery)) {
                         echo "Error: Could not insert data into OrderDetails table. " . $db->error;

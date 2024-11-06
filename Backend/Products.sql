@@ -7,8 +7,12 @@ CREATE TABLE OrderDetails (
     ProductImage VARCHAR(255),
     BrandName VARCHAR(100),
     CartName VARCHAR(100),
+    Quantity INT,
+    Size VARCHAR(50),
+    Price DECIMAL(10, 2),
     OrderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 -- Create WishList Table
 CREATE TABLE WishList (
     WishProductID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

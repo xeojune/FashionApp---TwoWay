@@ -23,20 +23,19 @@ INSERT INTO Sizes (SizeName, SizeType) VALUES
 ('290', 'Shoes'), ('295', 'Shoes'), ('300', 'Shoes'), ('305', 'Shoes'), ('310', 'Shoes'),
 ('315', 'Shoes'), ('320', 'Shoes'), ('325', 'Shoes'), ('330', 'Shoes');
 
-
-
-INSERT INTO Cart VALUES
-    ("hari", 1, "1", "L", 19.00),
-    ("password", 2, "2", "L", 20.00),
-    ("password", 3, "2", "L", 20.00),
-    ("password1", 4, "2", "L", 21.00),
-    ("password2", 5, "2", "L", 22.00),
-    ("password3", 6, "2", "L", 23.00),
-    ("password4", 7, "2", "L", 24.00),
-    ("password5", 8, "2", "L", 24.00),
-    ("password6", 9, "2", "L", 24.00),
-    ("password7", 10, "2", "L", 24.00),
-    ("password8", 11, "2", "L", 24.00);
+-- Taken from AddtoCart
+-- INSERT INTO Cart VALUES
+--     ("hari", 1, "1", "L", 19.00),
+--     ("password", 2, "2", "L", 20.00),
+--     ("password", 3, "2", "L", 20.00),
+--     ("password1", 4, "2", "L", 21.00),
+--     ("password2", 5, "2", "L", 22.00),
+--     ("password3", 6, "2", "L", 23.00),
+--     ("password4", 7, "2", "L", 24.00),
+--     ("password5", 8, "2", "L", 24.00),
+--     ("password6", 9, "2", "L", 24.00),
+--     ("password7", 10, "2", "L", 24.00),
+--     ("password8", 11, "2", "L", 24.00);
 
 INSERT INTO User VALUES
     (1, "hari", "example@email.com", "a9bcf1e4d7b95a22e2975c812d938889","90919221", "2024-05-10" ),
@@ -61,7 +60,6 @@ INSERT INTO Brands (BrandCode, BrandName) VALUES
 (8, 'Supreme'),
 (9, 'Chrome Hearts'),
 (10, 'New Balance');
-
 
 -- -- Insert into Products table
 INSERT INTO Products (BrandCode, ProductName, Price, DateCreated) VALUES

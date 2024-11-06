@@ -2,24 +2,24 @@
 
 $isUserLoggedIn = isset($_SESSION['valid_user']);
 
-// Set sales button prices based on product price with a 5% difference as an example
+// Set sales button prices based on product price with a 5% difference
 $SALES_BUTTON = [
     [
         "id" => 1,
         "name" => "Buy",
-        "price" => number_format($productData['Price'] * 1.05, 2) // 5% more than product price
+        "price" => $productData['Price'] * 1.05 // 5% more than product price
     ],
     [
         "id" => 2,
         "name" => "Sell",
-        "price" => number_format($productData['Price'] * 0.95, 2) // 5% less than product price
+        "price" => $productData['Price'] * 0.95 // 5% less than product price
     ]
 ];
 
-// Calculate the recent price increase or decrease (e.g., +10.5% example can be dynamic)
-$recentPriceChange = number_format($productData['Price'] * 0.1, 2); // 10% increase as example
+// Calculate the recent price increase or decrease (10% increase as example)
+$recentPriceChange = $productData['Price'] * 0.1;
 $recentPriceChangePercentage = 10.5; // This can be dynamically calculated too
-$bookmarkCount = 5719; // Replace this with dynamic data if available
+$bookmarkCount = 5719; // Replace with dynamic data if available
 
 $serializedData = urlencode(serialize($productData));
 ?>
@@ -54,7 +54,7 @@ $serializedData = urlencode(serialize($productData));
             <span class="recent-price">$<?php echo htmlspecialchars(number_format($productData['Price'], 2)); ?></span>
             <div class="price-amount-wrapper">
                 <span class="price-amount-icon">▲</span>
-                <span class="price-amount">$<?php echo htmlspecialchars($recentPriceChange); ?> (+<?php echo htmlspecialchars($recentPriceChangePercentage); ?>%)</span>
+                <span class="price-amount">$<?php echo htmlspecialchars(number_format($recentPriceChange, 2)); ?> (+<?php echo htmlspecialchars($recentPriceChangePercentage); ?>%)</span>
             </div>
         </div>
     </div>
@@ -65,10 +65,10 @@ $serializedData = urlencode(serialize($productData));
                 // Apply conditional class based on button name
                 $buttonClass = $btnData['name'] === 'Buy' ? 'sales-button sales-button-red' : 'sales-button sales-button-green';
             ?>
-            <button class="<?php echo $buttonClass; ?>" onclick="goToDeal('<?php echo htmlspecialchars($btnData['name']); ?>')" value="<?php echo htmlspecialchars($btnData['name']); ?>">
+            <button class="<?php echo $buttonClass; ?>" onclick="goToDeal('<?php echo htmlspecialchars($btnData['name']); ?>', <?php echo $btnData['price']; ?>)" value="<?php echo htmlspecialchars($btnData['name']); ?>">
                 <span class="btns-name"><?php echo htmlspecialchars($btnData['name']); ?></span>
                 <div class="btns-price-wrapper">
-                    <span class="btns-price-text">$<?php echo htmlspecialchars($btnData['price']); ?></span>
+                    <span class="btns-price-text">$<span class="formatted-price"><?php echo htmlspecialchars(number_format($btnData['price'], 2)); ?></span></span>
                     <span class="btns-price-state">Instant <?php echo htmlspecialchars($btnData['name']); ?>ing Price</span>
                 </div>
             </button>
@@ -96,20 +96,18 @@ function selectSize(size) {
     document.getElementById("sizeDropdown").style.display = "none";
 }
 
-function goToDeal(action) {
+function goToDeal(action, rawPrice) {
+    const price = parseFloat(rawPrice).toFixed(2); // Ensure price has two decimal places
     <?php if ($isUserLoggedIn): ?>
         if (action === 'Buy') {
             const productID = "<?php echo $productData['ProductID']; ?>";
-            const price = "<?php echo number_format($productData['Price'] * 1.05, 2); ?>";
             const productName = "<?php echo urlencode($productData['ProductName']); ?>";
             
             window.location.href = `index.php?page=addcart&productID=${productID}&price=${price}&size=${encodeURIComponent(selectedSize)}&productName=${productName}`;
         } else if (action === 'Sell') {
-            // Pass serialized data as a URL parameter
             window.location.href = `index.php?page=sell&data=<?php echo $serializedData; ?>`;
         }
     <?php else: ?>
-        // Show alert and redirect to login page if user is not logged in
         alert("You are not logged in!");
         window.location.href = "index.php?page=login";
     <?php endif; ?>
@@ -118,15 +116,13 @@ function goToDeal(action) {
 function addToWishlist() {
     <?php if ($isUserLoggedIn): ?>
         const productID = "<?php echo $productData['ProductID']; ?>";
-        const price = "<?php echo number_format($productData['Price'] * 1.05, 2); ?>";
+        const price = parseFloat(<?php echo $productData['Price'] * 1.05; ?>).toFixed(2); // Format to two decimal places
         const productName = "<?php echo urlencode($productData['ProductName']); ?>";
 
-        // Redirect to wishlist.php with productID and productName as parameters
         window.location.href = `index.php?page=insertwishlist&productID=${productID}&productName=${productName}&price=${price}&size=${encodeURIComponent(selectedSize)}`;
     <?php else: ?>
         alert("You are not logged in!");
         window.location.href = "index.php?page=login";
     <?php endif; ?>
 }
-
 </script>

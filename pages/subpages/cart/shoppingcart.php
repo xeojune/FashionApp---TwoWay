@@ -132,7 +132,7 @@
                         </div>
                     </div>
                     <div class="item-price-quantity">
-                        <p class="price">$<?php echo $Price; ?></p>
+                        <p class="price">$<?php echo number_format($Price,2); ?></p>
                         <input type="hidden" id="hidden-price" value="<?php echo $Price; ?>">
                     </div>
                 </div>

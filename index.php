@@ -73,6 +73,10 @@
         ?>
     </div>
 
+    <div id='footer-wrapper'>
+        <?php include('./pages/components/Footer.php'); ?>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

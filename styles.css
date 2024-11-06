@@ -5,6 +5,11 @@
     font-family: 'Arial';
 }
 
-.header-wrapper, content{
+.header-wrapper, content{ 
     width: 100%;
+}
+
+#footer-wrapper {
+    width: 100%;
+    margin-top: 300px; /* Adjust the value as needed */
 }

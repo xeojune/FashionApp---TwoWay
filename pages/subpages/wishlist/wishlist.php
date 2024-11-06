@@ -41,12 +41,12 @@ $result = $stmt->get_result();
             <hr>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="wishlist-item">
-                    <img src="<?php echo htmlspecialchars($row['image']); ?>" alt="Item Image" class="item-image">
+                    <img src="<?php echo $row['image']; ?>" alt="Item Image" class="item-image">
                     <div class="item-details">
-                        <h2>Brand: <?php echo htmlspecialchars($row['BrandName']); ?></h2>
-                        <p>Product Name: <?php echo htmlspecialchars($row['ProductName']); ?></p>
-                        <p>Size: <?php echo htmlspecialchars($row['Size']); ?></p>
-                        <p>Quantity: <?php echo htmlspecialchars($row['Quantity']); ?></p>
+                        <h2>Brand: <?php echo $row['BrandName']; ?></h2>
+                        <p>Product Name: <?php echo $row['ProductName']; ?></p>
+                        <p>Size: <?php echo $row['Size']; ?></p>
+                        <p>Quantity: <?php echo $row['Quantity']; ?></p>
                         <div class="actions">
                             <a href="index.php?page=cart&productID=<?php echo $row['ProductID']; ?>&size=<?php echo urlencode($row['Size']); ?>">Move to Shopping Bag</a>
                             <a href="index.php?page=removewishlist&productID=<?php echo $row['ProductID']; ?>&size=<?php echo urlencode($row['Size']); ?>" class="remove">Remove from Wish List</a>

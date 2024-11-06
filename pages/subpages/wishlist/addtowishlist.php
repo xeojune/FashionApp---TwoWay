@@ -46,7 +46,7 @@ if (isset($_SESSION['valid_user']) && isset($_GET['productID']) && isset($_GET['
         // Bind parameters for the update query
         $updateStmt->bind_param('idsis', $newQuantity, $newTotalPrice, $user, $productID, $size);
         if ($updateStmt->execute()) {
-            echo "Product quantity and price successfully updated.";
+            // echo "Product quantity and price successfully updated.";
         } else {
             echo "Error: Could not update product quantity and price. " . $updateStmt->error;
         }
@@ -83,6 +83,6 @@ if (isset($_SESSION['valid_user']) && isset($_GET['productID']) && isset($_GET['
 } else {
     echo "All required parameters are not available to add the product to the cart.";
 }
+header("Location: index.php?page=wishlist");
 ?>
-<p>Wishlist Database Added successfully</p>
 <?php $pageContent = ob_get_clean(); // Store the buffered content in $pageContent ?>

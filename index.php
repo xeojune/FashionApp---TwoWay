@@ -45,6 +45,8 @@
             include('./pages/subpages/cart/addtocart.php'); // Load addtocart.php
         } else if ($page === 'removecart') {
             include('./pages/subpages/cart/removefromcart.php'); // Load removefromcart.php
+        } else if (strpos($page, 'movetocart') === 0) {
+            include('./pages/subpages/wishlist/movetocart.php'); // Load movetocart.php
         } else if ($page === 'wishlist') {
             include('./pages/subpages/wishlist/wishlist.php'); // Load wishlist.php
         } else if (strpos($page, 'insertwishlist') === 0) {

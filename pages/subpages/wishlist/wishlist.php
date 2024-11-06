@@ -48,8 +48,8 @@ $result = $stmt->get_result();
                         <p>Size: <?php echo $row['Size']; ?></p>
                         <p>Quantity: <?php echo $row['Quantity']; ?></p>
                         <div class="actions">
-                            <a href="index.php?page=cart&productID=<?php echo $row['ProductID']; ?>&size=<?php echo urlencode($row['Size']); ?>">Move to Shopping Bag</a>
-                            <a href="index.php?page=removewishlist&productID=<?php echo $row['ProductID']; ?>&size=<?php echo urlencode($row['Size']); ?>" class="remove">Remove from Wish List</a>
+                            <a href="index.php?page=movetocart&productID=<?php echo $row['ProductID']; ?>&size=<?php echo $row['Size']; ?>&quantity=<?php echo $row['Quantity']; ?>&price=<?php echo $row['Price']; ?>">Move to Shopping Bag</a>
+                            <a href="index.php?page=removewishlist&productID=<?php echo $row['ProductID']; ?>&size=<?php echo $row['Size']; ?>" class="remove">Remove from Wish List</a>
                         </div>                    
                     </div>
                     <div class="item-price">

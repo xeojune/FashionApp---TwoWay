@@ -65,6 +65,8 @@
             include('./pages/Sell.php'); // Load Sell.php (check if the page stats with 'sell')
         } else if ($page === 'brand') {
             include('./pages/BrandDetail.php');
+        } else if ($page === "addProduct"){
+            include('./pages/AddProduct.php');
         } else {
             include('./pages/Home.php'); // Load Home.php as default
         }

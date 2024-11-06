@@ -29,7 +29,7 @@ ob_start();
 ?>
 <link rel="stylesheet" href="../../../styles/Sell.css">
 <div class="form-container">
-    <form class="sell-form">
+    <form class="sell-form" action='index.php?page=addProduct' method="POST">
         <p>Sell Your Product</p>
         <div class="sellImage">
             <img class="goods-image" src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($productName); ?>">
@@ -61,6 +61,8 @@ ob_start();
             <label for="price">Price</label>
             <input type="text" id="price" name="price" value="$<?php echo number_format($price * 0.95, 2); ?>" readonly>
         </div>
+
+        <input type="hidden" name="productID" value="<?php echo htmlspecialchars($productID); ?>">
 
         <!-- Submit button -->
         <button type="submit" class="submit-button">Sell Item</button>

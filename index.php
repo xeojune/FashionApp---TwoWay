@@ -63,6 +63,8 @@
             include('./pages/Profile.php'); // Load Profile.php
         } else if (strpos($page, 'sell') === 0){
             include('./pages/Sell.php'); // Load Sell.php (check if the page stats with 'sell')
+        } else if ($page === 'brand') {
+            include('./pages/BrandDetail.php');
         } else {
             include('./pages/Home.php'); // Load Home.php as default
         }

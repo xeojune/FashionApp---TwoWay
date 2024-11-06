@@ -1,5 +1,7 @@
 <?php if (!isset($productData)) return; 
 
+$isUserLoggedIn = isset($_SESSION['valid_user']);
+
 // Set sales button prices based on product price with a 5% difference as an example
 $SALES_BUTTON = [
     [
@@ -95,26 +97,36 @@ function selectSize(size) {
 }
 
 function goToDeal(action) {
-    if (action === 'Buy') {
-        const productID = "<?php echo $productData['ProductID']; ?>";
-        const price = "<?php echo number_format($productData['Price'] * 1.05, 2); ?>";
-        const productName = "<?php echo urlencode($productData['ProductName']); ?>";
-        
-
-        window.location.href = `index.php?page=addcart&productID=${productID}&price=${price}&size=${encodeURIComponent(selectedSize)}&productName=${productName}`;
-    } else if (action === 'Sell') {
-        // Pass serialized data as a URL parameter
-        window.location.href = `index.php?page=sell&data=<?php echo $serializedData; ?>`;
-    }
+    <?php if ($isUserLoggedIn): ?>
+        if (action === 'Buy') {
+            const productID = "<?php echo $productData['ProductID']; ?>";
+            const price = "<?php echo number_format($productData['Price'] * 1.05, 2); ?>";
+            const productName = "<?php echo urlencode($productData['ProductName']); ?>";
+            
+            window.location.href = `index.php?page=addcart&productID=${productID}&price=${price}&size=${encodeURIComponent(selectedSize)}&productName=${productName}`;
+        } else if (action === 'Sell') {
+            // Pass serialized data as a URL parameter
+            window.location.href = `index.php?page=sell&data=<?php echo $serializedData; ?>`;
+        }
+    <?php else: ?>
+        // Show alert and redirect to login page if user is not logged in
+        alert("You are not logged in!");
+        window.location.href = "index.php?page=login";
+    <?php endif; ?>
 }
 
 function addToWishlist() {
-    const productID = "<?php echo $productData['ProductID']; ?>";
-    const price = "<?php echo number_format($productData['Price'] * 1.05, 2); ?>";
-    const productName = "<?php echo urlencode($productData['ProductName']); ?>";
+    <?php if ($isUserLoggedIn): ?>
+        const productID = "<?php echo $productData['ProductID']; ?>";
+        const price = "<?php echo number_format($productData['Price'] * 1.05, 2); ?>";
+        const productName = "<?php echo urlencode($productData['ProductName']); ?>";
 
-    // Redirect to wishlist.php with productID and productName as parameters
-    window.location.href = `index.php?page=insertwishlist&productID=${productID}&productName=${productName}&price=${price}&size=${encodeURIComponent(selectedSize)}`;
+        // Redirect to wishlist.php with productID and productName as parameters
+        window.location.href = `index.php?page=insertwishlist&productID=${productID}&productName=${productName}&price=${price}&size=${encodeURIComponent(selectedSize)}`;
+    <?php else: ?>
+        alert("You are not logged in!");
+        window.location.href = "index.php?page=login";
+    <?php endif; ?>
 }
 
 </script>

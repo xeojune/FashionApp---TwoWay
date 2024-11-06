@@ -198,17 +198,10 @@ $isFilterSelected = $totalFilter > 0;
 
 <link rel="stylesheet" href="../../../styles/Itemlist.css">
 <div class='list-wrapper'>
-    <!--Search Bar Component-->
-    <?php include('SearchBar.php'); ?>
-    <!--Category Component-->
-    <div class='category-wrapper'>
-        <ul class='category-list'>
-            <?php foreach ($CATEGORY_LIST as $categoryItem): ?>
-                <?php $category = $categoryItem; ?>
-                <?php include('Category.php'); ?>
-            <?php endforeach; ?>
-        </ul>
-    </div>  
+    <div class='page-title'>
+        Shop
+    </div>
+    <hr class='divider'>
 
     <div class='content'>
         <div class='search-filter'>

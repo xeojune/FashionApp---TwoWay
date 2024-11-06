@@ -149,11 +149,10 @@
             <div class="summary-details">
   
                 <p>Delivery<span id="total"> <?php if($count == 0) { echo "$0.00" ;} else {echo "$2.00";} ?></span></p>
-                <strong><p>Total (SGD) <span id="total-price">$<?php  if($count == 0) { echo "0.00" ;} else {echo number_format($Quantity*$Price+2.00,2);}?></span></p></strong>
+                <strong><p>Total (SGD) <span id="total-price">$<?php  if($count == 0) { echo "0.00" ;} else {echo $_SESSION['total'] = number_format($Quantity*$Price+2.00,2);}?></span></p></strong>
             </div>
             <?php if ($count > 0) {?>
             <form action="index.php?page=purchase" method="POST">
-                <input type="hidden" name="total" value="<?php session_start();  $_SESSION['total'] = $Quantity * $Price + 2.00; echo "Quantity: $Quantity, Price: $price"; ?>">
                 <button type="submit" class="purchase-btn">Proceed to purchase</button>
             </form>
             <?php } }?>

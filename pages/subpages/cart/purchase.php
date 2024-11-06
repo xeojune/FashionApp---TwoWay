@@ -2,6 +2,7 @@
 
     $user = $_SESSION['valid_user'];
     $total = $_SESSION['total'];
+    unset($_SESSION['total']);
 
     $db = new mysqli('127.0.0.1', 'root', '', 'TwoWay');
     

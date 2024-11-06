@@ -4,7 +4,6 @@ $pageTitle = "Order to DB"; // Set the page title
 // Start output buffering to capture the content
 ob_start();
 
-session_start(); // Ensure session is started
 $user = $_SESSION['valid_user'];
 $total = $_SESSION['total'];
 
@@ -70,13 +69,37 @@ if ($resultuser && $resultuser->num_rows > 0) {
                     $size = $cartDetails['Size'];
                     $price = $cartDetails['Price'];
 
-                    // Insert the cart details into the OrderDetails table
-                    $insertQuery = "
-                        INSERT INTO OrderDetails (UserName, ProductID, ProductName, BrandCode, ProductImage, BrandName, CartName, Quantity, Size, Price)
-                        VALUES ('$username', '$productID', '$productName', '$brandCode', '$productImage', '$brandName', '$cartName', '$quantity', '$size', '$price')";
+                    // Check if an entry already exists in OrderDetails
+                    $checkQuery = "
+                        SELECT * FROM OrderDetails 
+                        WHERE UserName = '$username' 
+                        AND ProductID = '$productID' 
+                        AND Size = '$size'";
 
-                    if (!$db->query($insertQuery)) {
-                        echo "Error: Could not insert data into OrderDetails table. " . $db->error;
+                    $existingOrder = $db->query($checkQuery);
+
+                    if ($existingOrder && $existingOrder->num_rows > 0) {
+                        // Update the existing row by summing up quantity and price
+                        $updateQuery = "
+                            UPDATE OrderDetails 
+                            SET Quantity = Quantity + '$quantity', 
+                                Price = Price + '$price' 
+                            WHERE UserName = '$username' 
+                            AND ProductID = '$productID' 
+                            AND Size = '$size'";
+
+                        if (!$db->query($updateQuery)) {
+                            echo "Error: Could not update data in OrderDetails table. " . $db->error;
+                        }
+                    } else {
+                        // Insert a new row if no matching entry exists
+                        $insertQuery = "
+                            INSERT INTO OrderDetails (UserName, ProductID, ProductName, BrandCode, ProductImage, BrandName, CartName, Quantity, Size, Price)
+                            VALUES ('$username', '$productID', '$productName', '$brandCode', '$productImage', '$brandName', '$cartName', '$quantity', '$size', '$price')";
+
+                        if (!$db->query($insertQuery)) {
+                            echo "Error: Could not insert data into OrderDetails table. " . $db->error;
+                        }
                     }
 
                     // Delete the item from the Cart table
@@ -93,7 +116,7 @@ if ($resultuser && $resultuser->num_rows > 0) {
 } 
 header("Location: index.php?page=completed"); 
 exit();
-?>        
+?>
 <?php
 $pageContent = ob_get_clean(); // Store the buffered content in $pageContent
 ?>

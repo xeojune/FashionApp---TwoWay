@@ -100,6 +100,9 @@
                             $resultCartDetails = $db->query($cartDetailsQuery);
 
                             if ($resultCartDetails && $resultCartDetails->num_rows > 0) {
+                                $totalQuantity = 0;
+                                $totalPrice = 0;
+                                
                                 while ($cartDetails = $resultCartDetails->fetch_assoc()) {
                                     $cartName = $cartDetails['CartName'];
                                     $productID = $cartDetails['ProductID'];
@@ -107,6 +110,10 @@
                                     $brandCode = $cartDetails['BrandCode'];
                                     $productImage = $cartDetails['image'];
                                     $brandName = $cartDetails['BrandName'];
+                                
+                                    $totalQuantity += $Quantity;
+                                    $totalPrice += $Quantity * $Price;
+                                
                                 }
                             } else {
                                 echo "No cart details found.";

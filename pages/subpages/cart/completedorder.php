@@ -12,10 +12,19 @@ if (mysqli_connect_errno()) {
     exit;
 }
 
+// Query to get the order details
 $orderQuery = "SELECT ProductID, ProductName, BrandName, ProductImage, CartName, Price, Quantity, Size 
                FROM OrderDetails 
                WHERE UserName = '$user'";
 $resultOrder = $db->query($orderQuery);
+
+// Query to calculate the total price
+$totalQuery = "SELECT SUM(Price) AS TotalPrice 
+               FROM OrderDetails 
+               WHERE UserName = '$user'";
+$totalResult = $db->query($totalQuery);
+$totalRow = $totalResult->fetch_assoc();
+$totalPrice = $totalRow['TotalPrice'];
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +68,7 @@ $resultOrder = $db->query($orderQuery);
                     }
                     ?>
                 </ul>
-                <p><strong>Total Price:</strong> $<?php echo number_format($_SESSION['total'], 2); ?></p>
+                <p><strong>Total Price:</strong> $<?php echo number_format($totalPrice, 2); ?></p>
             <?php } else { ?>
                 <p>No items found in your recent order.</p>
             <?php } ?>
